@@ -55,6 +55,16 @@ class Manager
         $this->entityManager->refresh($tree);
     }
 
+    public function getTerminalCode(TreeScene $tree, int $cols, int $rows): string
+    {
+        $christmasTree = new ChristmasTree();
+        $christmasTree->putStar(4);
+        $buffer = new Output\BufferOutput($cols, $rows);
+        $christmasTree->clearOutput($buffer);
+        $christmasTree->render($buffer);
+        return $buffer->getContent(true);
+    }
+
     private function getDefaultState(): array
     {
         return [];

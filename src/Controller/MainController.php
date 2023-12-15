@@ -23,12 +23,14 @@ class MainController extends AbstractController
     #[Route("/", name: "main")]
     public function index(): Response
     {
+        $this->treeManager->cleanup();
         return $this->redirectToRoute("create");
     }
 
     #[Route("/common/create", name: "create")]
     public function createTree(): Response
     {
+        $this->treeManager->cleanup();
         $tree = $this->treeManager->createTree();
         if ($tree !== null) {
             return $this->redirectToRoute("tree", ["tree" => $tree->getId()]);
@@ -48,12 +50,15 @@ class MainController extends AbstractController
 
         $treeUrl = $this->generateUrl('tree', ["tree" => $tree->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
         $treeUrlShow = preg_replace('|https?://|', '', $treeUrl);
+        
+        $this->treeManager->store($tree);
+        $this->treeManager->cleanup();
         return $this->render('main.html.twig', [
             "treeUrl" => $treeUrl,
             "treeUrlShow" => $treeUrlShow,
             "terminalConfig" => [
                 "optimalFit" => [120, 40],
-                "minimalFit" => [80, 25],
+                "minimalFit" => [60, 40],
                 "baseFontSize" => 17,
                 "resetOnResize" => true,
                 "dataEndpoint" => $this->generateUrl("tree.data", ["tree" => $tree->getId()]),
@@ -87,9 +92,9 @@ class MainController extends AbstractController
             sleep(1);
             $this->treeManager->refresh($tree);
         }
-        $data = "Hello from \x1B[1;3;31mxterm.js\x1B[0m $\n\r";
-        $data .= "at revision " . $tree->getRevision() . "\n\r";
-        
+        $data = $this->treeManager->getTerminalCode($tree, $cols ?? 80, $rows ?? 25);
+        $this->treeManager->store($tree);
+        $this->treeManager->cleanup();
         return [
             "data" => $data,
             "revision" => $tree->getRevision(),

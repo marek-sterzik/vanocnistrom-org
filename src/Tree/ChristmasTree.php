@@ -2,37 +2,78 @@
 
 namespace App\Tree;
 
+use App\Tree\Output\OutputInterface;
+
 /**
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class ChristmasTree
 {
-    private $canvas;
+    private AACanvas $canvas;
 
-    private $drawer;
+    private ChristmasTreeDrawer $drawer;
 
-    private $chains;
-    private $glassBalls;
-    private $sweets;
-    private $lamps;
-    private $starColor;
-    private $gifts;
+    private array $chains;
+    private array $glassBalls;
+    private array $sweets;
+    private array $lamps;
+    private int|false|null $starColor;
+    private array $gifts;
 
-    public function __construct()
+    public function __construct(array $state = [])
     {
         $this->canvas = new AACanvas(60, 37);
         $this->drawer = new ChristmasTreeDrawer($this->canvas);
 
-        $this->chains = $this->initializeObjectList($this->drawer->getNumberOfChains(), false);
-        $this->glassBalls = $this->initializeObjectList($this->drawer->getNumberOfGlassBalls(), false);
-        $this->sweets = $this->initializeObjectList($this->drawer->getNumberOfSweets(), false);
-        $this->lamps = $this->initializeObjectList($this->drawer->getNumberOfLamps(), false);
-        $this->starColor = false;
+        $this->chains = $this->initializeObjectList($this->drawer->getNumberOfChains(), $state["chains"] ?? null);
+        $this->glassBalls = $this->initializeObjectList($this->drawer->getNumberOfGlassBalls(), $state["glassBalls"] ?? null);
+        $this->sweets = $this->initializeObjectList($this->drawer->getNumberOfSweets(), $state["sweets"] ?? null);
+        $this->lamps = $this->initializeObjectList($this->drawer->getNumberOfLamps(), $state["lamps"] ?? null);
+        $this->starColor = $this->normalizeColorValue(array_key_exists("starColor", $state) ? $state["starColor"] : false);
         $this->gifts = [];
         $this->numberOfGifts = $this->drawer->getNumberOfGifts();
+        $gifts = $state['gifts'] ?? null;
+        if (is_array($gifts)) {
+            foreach ($gifts as $gift) {
+                $this->putGiftLogical($gift);
+            }
+        }
 
         $this->redraw();
+    }
+
+    public function dumpState(): array
+    {
+        $state = [];
+        $this->dumpStatePart($state, "chains", $this->chains);
+        $this->dumpStatePart($state, "glassBalls", $this->glassBalls);
+        $this->dumpStatePart($state, "sweets", $this->sweets);
+        $this->dumpStatePart($state, "lamps", $this->lamps);
+        $this->dumpStatePart($state, "starColor", $this->starColor);
+        $this->dumpStatePart($state, "gifts", $this->gifts);
+        return $state;
+    }
+
+    private function dumpStatePart(array &$state, string $key, mixed $value): self
+    {
+        if ($value === false) {
+            return $this;
+        }
+        if (is_array($value)) {
+            $found = false;
+            foreach ($value as $val) {
+                if ($val !== false) {
+                    $found = true;
+                    break;
+                }
+            }
+            if (!$found) {
+                return $this;
+            }
+        }
+        $state[$key] = $value;
+        return $this;
     }
 
     public function putChain(?int $color = null): self
@@ -163,15 +204,40 @@ class ChristmasTree
 
     public function putGift(string $label, ?int $packageColor = null, ?int $labelColor = null): self
     {
-        $this->gifts[] = [
+        $this->putGiftLogical([
             'label' => $label,
             'packageColor' => $packageColor,
             'labelColor' => $labelColor,
+        ]);
+        $this->drawGifts();
+        return $this;
+    }
+
+    private function putGiftLogical(mixed $giftDescriptor): self
+    {
+        if (!is_array($giftDescriptor) || !array_key_exists('label', $giftDescriptor)) {
+            return $this;
+        }
+        if (!array_key_exists('packageColor', $giftDescriptor) || !array_key_exists('labelColor', $giftDescriptor)) {
+            return $this;
+        }
+        if (!is_string($giftDescriptor['label'])) {
+            return $this;
+        }
+        if (!is_null($giftDescriptor['packageColor']) && !is_int($giftDescriptor['packageColor'])) {
+            return $this;
+        }
+        if (!is_null($giftDescriptor['labelColor']) && !is_int($giftDescriptor['labelColor'])) {
+            return $this;
+        }
+        $this->gifts[] = [
+            'label' => $giftDescriptor['label'],
+            'packageColor' => $giftDescriptor['packageColor'],
+            'labelColor' => $giftDescriptor['labelColor'],
         ];
         while (count($this->gifts) > $this->numberOfGifts) {
             array_shift($this->gifts);
         }
-        $this->drawGifts();
         return $this;
     }
 
@@ -191,13 +257,29 @@ class ChristmasTree
         return $this;
     }
 
-    private function initializeObjectList(int $number, $initialValue): array
+    private function initializeObjectList(int $number, mixed $initialValue): array
     {
+        if (!is_array($initialValue)) {
+            $initialValue = [];
+        }
         $list = [];
         for ($i = 0; $i < $number; $i++) {
-            $list[] = $initialValue;
+            if (array_key_exists($i, $initialValue)) {
+                $value = $this->normalizeColorValue($initialValue[$i]);
+            } else {
+                $value = false;
+            }
+            $list[] = $value;
         }
         return $list;
+    }
+
+    private function normalizeColorValue(mixed $value): int|false|null
+    {
+        if (!is_int($value) && !is_null($value)) {
+            return false;
+        }
+        return $value;
     }
 
     private function iterateObjectList(array &$list, ?int $number): iterable
@@ -327,15 +409,15 @@ class ChristmasTree
         }
     }
 
-    public function render($outputFd = null): self
+    public function render(OutputInterface $output): self
     {
-        $this->canvas->render($outputFd);
+        $this->canvas->render($output);
         return $this;
     }
 
-    public function clearOutput($outputFd = null): self
+    public function clearOutput(OutputInterface $output): self
     {
-        $this->canvas->clearOutput($outputFd);
+        $this->canvas->clearOutput($output);
         return $this;
     }
 }

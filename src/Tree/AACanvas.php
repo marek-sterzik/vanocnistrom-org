@@ -2,6 +2,8 @@
 
 namespace App\Tree;
 
+use App\Tree\Output\OutputInterface;
+
 /** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
 class AACanvas
 {
@@ -145,12 +147,9 @@ class AACanvas
         return $this->writeText($x + $space, $y, $text);
     }
 
-    public function render($outputFd = null): self
+    public function render(OutputInterface $output): self
     {
-        if ($outputFd === null) {
-            $outputFd = STDOUT;
-        }
-        $redraw = $this->updateTerminalSize($outputFd);
+        $redraw = $this->updateTerminalSize($output);
 
         $params = $this->calcParams();
 
@@ -164,20 +163,17 @@ class AACanvas
             $string .= $this->optimizedLineOutput($i, $params['xf'], $params['xt']);
         }
 
-        fputs($outputFd, $string);
+        $output->writeString($string);
 
         return $this;
     }
 
-    public function clearOutput($outputFd = null): self
+    public function clearOutput(OutputInterface $output): self
     {
-        if ($outputFd === null) {
-            $outputFd = STDOUT;
-        }
         $string = "";
         $string .= $this->escape("2J") . $this->offset(0, 0);
         
-        fputs($outputFd, $string);
+        $output->writeString($string);
 
         return $this;
     }
@@ -307,9 +303,9 @@ class AACanvas
         return $params;
     }
 
-    private function updateTerminalSize($outputFd): bool
+    private function updateTerminalSize(OutputInterface $output): bool
     {
-        list ($rows, $cols) = $this->getTerminalSize($outputFd);
+        list($cols, $rows) = $output->getTerminalSize();
         $redraw = false;
         if ($rows !== $this->lastWrittenHeight || $cols !== $this->lastWrittenWidth) {
             $redraw = true;
@@ -318,21 +314,5 @@ class AACanvas
         $this->lastWrittenWidth = $cols;
 
         return $redraw;
-    }
-
-    private function getTerminalSize($outputFd): array
-    {
-        $rows = 25;
-        $cols = 80;
-        $data = @exec('stty size');
-        if (is_string($data)) {
-            $data = trim($data);
-            if (preg_match('/^[0-9]+ [0-9]+$/', $data)) {
-                list($rows, $cols) = explode(' ', $data);
-                $rows = (int) $rows;
-                $cols = (int) $cols;
-            }
-        }
-        return [$rows, $cols];
     }
 }
