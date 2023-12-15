@@ -21,24 +21,9 @@ class TreeSceneRepository extends ServiceEntityRepository
         parent::__construct($registry, TreeScene::class);
     }
 
-    public function save(TreeScene $entity, bool $flush = false): void
+    public function cleanup(): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
     }
-
-    public function remove(TreeScene $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
-    }
-
 //    /**
 //     * @return TreeScene[] Returns an array of TreeScene objects
 //     */

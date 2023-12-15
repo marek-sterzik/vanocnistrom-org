@@ -86,7 +86,6 @@ class MainController extends AbstractController
             }
             sleep(1);
             $this->treeManager->refresh($tree);
-
         }
         $data = "Hello from \x1B[1;3;31mxterm.js\x1B[0m $\n\r";
         $data .= "at revision " . $tree->getRevision() . "\n\r";

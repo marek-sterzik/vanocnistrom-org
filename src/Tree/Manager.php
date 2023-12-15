@@ -4,20 +4,27 @@ namespace App\Tree;
 
 use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use App\Entity\TreeScene;
+use App\Repository\TreeSceneRepository;
 use App\Utility\CodeGenerator;
 
 use DateTimeImmutable;
 use DateInterval;
+use Exception;
 
 class Manager
 {
     public const VALID_DAYS = 2;
 
-    private $treeSceneRepository;
+    public function __construct(
+        private EntityManager $entityManager,
+        private TreeSceneRepository $treeSceneRepository,
+        private CodeGenerator $codeGenerator
+    ) {
+    }
 
-    public function __construct(private EntityManager $entityManager, private CodeGenerator $codeGenerator)
+    public function cleanup(): void
     {
-        $this->treeSceneRepository = $entityManager->getRepository(TreeScene::class);
+        $this->treeSceneRepository->cleanup();
     }
 
     public function createTree(): ?TreeScene
