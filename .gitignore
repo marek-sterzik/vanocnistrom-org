@@ -2,6 +2,7 @@
 /.config.env
 /.config.env.new
 /invoke
+/public/css/xterm.css
 
 #assets
 /public/assets-v*

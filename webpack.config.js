@@ -8,6 +8,10 @@ module.exports = {
     rules: [
         {test: /\.js$/, use: "babel-loader"}
     ]
+  },
+  performance: {
+    maxAssetSize: 500000,
+    maxEntrypointSize: 500000,
   }
 };
 

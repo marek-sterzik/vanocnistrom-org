@@ -4,6 +4,7 @@
 
 header {
     background-color: black;
+    color: #bbb;
 }
 
 div.clear {
@@ -13,6 +14,9 @@ div.clear {
 header a {
     color: white;
     text-decoration: none;
+}
+
+header a.tree {
     font-weight: bold;
 }
 

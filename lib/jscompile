@@ -17,3 +17,4 @@ if [ "$#" -ne 0 ]; then
 fi
 
 node_modules/.bin/webpack $watch
+cp node_modules/xterm/css/xterm.css public/css/xterm.css
