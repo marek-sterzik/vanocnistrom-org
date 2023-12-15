@@ -3,6 +3,7 @@
 namespace App\Tree;
 
 use App\Tree\Output\OutputInterface;
+use Exception;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyMethods)
@@ -22,6 +23,8 @@ class ChristmasTree
     private array $lamps;
     private int|false|null $starColor;
     private array $gifts;
+    private int $numberOfGifts;
+
 
     public function __construct(mixed $state = null, bool $drawable = true)
     {
@@ -314,7 +317,7 @@ class ChristmasTree
         }
     }
 
-    private function setObjectList(array &$list, ?int $number, $value): array
+    private function setObjectList(array &$list, ?int $number, mixed $value): array
     {
         if ($number === null) {
             foreach (array_keys($list) as $i) {

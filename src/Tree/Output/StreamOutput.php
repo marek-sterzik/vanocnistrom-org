@@ -4,6 +4,9 @@ namespace App\Tree\Output;
 
 class StreamOutput implements OutputInterface
 {
+    /**
+     * @param resource $outputFd
+     */
     public function __construct(protected $outputFd)
     {
     }
