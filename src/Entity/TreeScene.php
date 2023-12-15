@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\TreeSceneRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeInterface;
+use DateTimeImmutable;
 
 #[ORM\Entity(repositoryClass: TreeSceneRepository::class)]
 class TreeScene
@@ -23,11 +25,12 @@ class TreeScene
     private ?int $revision = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    private ?\DateTimeInterface $validTill = null;
+    private ?DateTimeInterface $validTill = null;
 
     public function __construct(string $id)
     {
         $this->id = $id;
+        $this->validTill = new DateTimeImmutable();
     }
 
     public function getId(): string
@@ -71,15 +74,23 @@ class TreeScene
         return $this;
     }
 
-    public function getValidTill(): \DateTimeInterface
+    public function getValidTill(): DateTimeInterface
     {
         return $this->validTill;
     }
 
-    public function setValidTill(\DateTimeInterface $validTill): static
+    public function setValidTill(DateTimeInterface $validTill): static
     {
         $this->validTill = $validTill;
 
+        return $this;
+    }
+
+    public function updateValidTill(DateTimeInterface $validTill): static
+    {
+        if ($this->validTill < $validTill) {
+            $this->validTill = $validTill;
+        }
         return $this;
     }
 }
