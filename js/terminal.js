@@ -154,7 +154,7 @@ $(function(){
             setupFontSize(term, getParentSize(self), config)
             fitAddon.fit()
             const newSize = getTermSize(term)
-            if (config.restartOnResize && oldSize != newSize) {
+            if (config.resetOnResize && oldSize != newSize) {
                 term.clear()
                 runtimeData.revision = null
                 runtimeData.restartNumber++

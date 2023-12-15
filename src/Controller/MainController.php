@@ -14,6 +14,8 @@ use App\Tree\Manager as TreeManager;
 
 class MainController extends AbstractController
 {
+    public const MAX_TRIES = 30;
+
     public function __construct(private TreeManager $treeManager)
     {
     }
@@ -64,32 +66,34 @@ class MainController extends AbstractController
     #[Route("/{tree}/data", name: "tree.data")]
     public function treeData(?TreeScene $tree, Request $request): array
     {
+        if ($tree === null) {
+            return [
+                "data" => null,
+                "revision" => null,
+            ];
+        }
         $revision = $this->parseInt($request, "revision");
         $cols = $this->parseInt($request, "cols");
         $rows = $this->parseInt($request, "rows");
-        if ($revision === null) {
-            $revision = 1;
-            $data = "Hello from \x1B[1;3;31mxterm.js\x1B[0m $\n\r";
-            $delay = 1;
-        } elseif ($revision === 1) {
-            $revision = 2;
-            $data = "Hello from \x1B[1;3;32mxterm.js\x1B[0m $\n\r";
-            $delay = 2;
-        } else if ($revision === 2) {
-            $revision = 3;
-            $data = "Hello from \x1B[1;3;34mxterm.js\x1B[0m $\n\r";
-            $delay = 3;
-        } else {
-            $revision = 3;
-            $data = null;
-            $delay = 0;
+        $tries = self::MAX_TRIES;
+        while ($revision !== null && $tree->getRevision() === $revision) {
+            $tries--;
+            if ($tries == 0) {
+                return [
+                    "data" => null,
+                    "revision" => $tree->getRevision(),
+                ];
+            }
+            sleep(1);
+            $this->treeManager->refresh($tree);
+
         }
-        if ($delay > 0) {
-            sleep($delay);
-        }
+        $data = "Hello from \x1B[1;3;31mxterm.js\x1B[0m $\n\r";
+        $data .= "at revision " . $tree->getRevision() . "\n\r";
+        
         return [
             "data" => $data,
-            "revision" => $revision,
+            "revision" => $tree->getRevision(),
         ];
     }
 

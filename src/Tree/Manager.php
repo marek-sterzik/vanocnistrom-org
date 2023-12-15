@@ -43,6 +43,11 @@ class Manager
         $this->entityManager->flush();
     }
 
+    public function refresh(TreeScene $tree): void
+    {
+        $this->entityManager->refresh($tree);
+    }
+
     private function getDefaultState(): array
     {
         return [];
