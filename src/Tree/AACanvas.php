@@ -178,7 +178,7 @@ class AACanvas
         return $this;
     }
 
-    private function optimizedLineOutput(int $y, int $xFrom, int $xTo)
+    private function optimizedLineOutput(int $y, int $xFrom, int $xTo): string
     {
         $string = "";
         $currentAttrs = null;

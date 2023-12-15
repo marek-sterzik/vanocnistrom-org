@@ -4,7 +4,7 @@ namespace App\Tree\Output;
 
 class StreamOutput implements OutputInterface
 {
-    public function __construct(private $outputFd)
+    public function __construct(protected $outputFd)
     {
     }
 
@@ -18,4 +18,3 @@ class StreamOutput implements OutputInterface
         return [80, 25];
     }
 }
-

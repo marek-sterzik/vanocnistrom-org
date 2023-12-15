@@ -6,6 +6,7 @@ use App\Tree\Output\OutputInterface;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class ChristmasTree
@@ -14,6 +15,7 @@ class ChristmasTree
 
     private ChristmasTreeDrawer $drawer;
 
+    private bool $drawable;
     private array $chains;
     private array $glassBalls;
     private array $sweets;
@@ -21,16 +23,34 @@ class ChristmasTree
     private int|false|null $starColor;
     private array $gifts;
 
-    public function __construct(array $state = [])
+    public function __construct(mixed $state = null, bool $drawable = true)
     {
-        $this->canvas = new AACanvas(60, 37);
+        if (!is_array($state)) {
+            $state = [];
+        }
+        $this->drawable = $drawable;
+        $this->canvas = new AACanvas($drawable ? 60 : 1, $drawable ? 37 : 1);
         $this->drawer = new ChristmasTreeDrawer($this->canvas);
 
-        $this->chains = $this->initializeObjectList($this->drawer->getNumberOfChains(), $state["chains"] ?? null);
-        $this->glassBalls = $this->initializeObjectList($this->drawer->getNumberOfGlassBalls(), $state["glassBalls"] ?? null);
-        $this->sweets = $this->initializeObjectList($this->drawer->getNumberOfSweets(), $state["sweets"] ?? null);
-        $this->lamps = $this->initializeObjectList($this->drawer->getNumberOfLamps(), $state["lamps"] ?? null);
-        $this->starColor = $this->normalizeColorValue(array_key_exists("starColor", $state) ? $state["starColor"] : false);
+        $this->chains = $this->initializeObjectList(
+            $this->drawer->getNumberOfChains(),
+            $state["chains"] ?? null
+        );
+        $this->glassBalls = $this->initializeObjectList(
+            $this->drawer->getNumberOfGlassBalls(),
+            $state["glassBalls"] ?? null
+        );
+        $this->sweets = $this->initializeObjectList(
+            $this->drawer->getNumberOfSweets(),
+            $state["sweets"] ?? null
+        );
+        $this->lamps = $this->initializeObjectList(
+            $this->drawer->getNumberOfLamps(),
+            $state["lamps"] ?? null
+        );
+        $this->starColor = $this->normalizeColorValue(
+            array_key_exists("starColor", $state) ? $state["starColor"] : false
+        );
         $this->gifts = [];
         $this->numberOfGifts = $this->drawer->getNumberOfGifts();
         $gifts = $state['gifts'] ?? null;
@@ -325,98 +345,128 @@ class ChristmasTree
     }
 
 
-    private function redraw()
+    private function redraw(): self
     {
-        $this->canvas->clear();
-        $this->drawTree();
-        $this->drawChain();
-        $this->drawGlassBalls();
-        $this->drawSweets();
-        $this->drawLamps();
-        $this->drawStar();
-        $this->drawGifts();
-    }
-
-    private function drawGifts()
-    {
-        foreach ($this->gifts as $i => $giftDescriptor) {
-            $this->canvas->setColor($this->getSafeColor($giftDescriptor['packageColor']));
-            $this->drawer->drawGift($i);
-            $this->canvas->setColor($this->getSafeColor($giftDescriptor['labelColor']));
-            $this->drawer->drawGiftLabel($giftDescriptor['label'], $i);
+        if ($this->drawable) {
+            $this->canvas->clear();
+            $this->drawTree();
+            $this->drawChain();
+            $this->drawGlassBalls();
+            $this->drawSweets();
+            $this->drawLamps();
+            $this->drawStar();
+            $this->drawGifts();
         }
+        return $this;
     }
 
-    private function drawTree()
+    private function drawGifts(): self
     {
-        $this->canvas->setColor(2);
-        $this->drawer->drawTree();
-        $this->canvas->setColor(3);
-        $this->drawer->drawRoot();
-        $this->canvas->setColor(null);
-    }
-
-    private function drawChain(?int $number = null)
-    {
-        foreach ($this->iterateObjectList($this->chains, $number) as $i => $color) {
-            if ($color !== false) {
-                $this->canvas->setColor($this->getSafeColor($color));
-                $this->drawer->drawChain($i);
+        if ($this->drawable) {
+            foreach ($this->gifts as $i => $giftDescriptor) {
+                $this->canvas->setColor($this->getSafeColor($giftDescriptor['packageColor']));
+                $this->drawer->drawGift($i);
+                $this->canvas->setColor($this->getSafeColor($giftDescriptor['labelColor']));
+                $this->drawer->drawGiftLabel($giftDescriptor['label'], $i);
             }
         }
-        $this->canvas->setColor(null);
+        return $this;
     }
 
-    private function drawGlassBalls(?int $number = null)
+    private function drawTree(): self
     {
-        foreach ($this->iterateObjectList($this->glassBalls, $number) as $i => $color) {
-            if ($color !== false) {
-                $this->canvas->setColor($this->getSafeColor($color));
-                $this->drawer->drawGlassBalls($i);
-            }
-        }
-        $this->canvas->setColor(null);
-    }
-
-    private function drawSweets(?int $number = null)
-    {
-        foreach ($this->iterateObjectList($this->sweets, $number) as $i => $color) {
-            if ($color !== false) {
-                $this->canvas->setColor($this->getSafeColor($color));
-                $this->drawer->drawSweets($i);
-            }
-        }
-        $this->canvas->setColor(null);
-    }
-
-    private function drawLamps(?int $number = null)
-    {
-        foreach ($this->iterateObjectList($this->lamps, $number) as $i => $color) {
-            if ($color !== false) {
-                $this->canvas->setColor($this->getSafeColor($color));
-                $this->drawer->drawLamps($i);
-            }
-        }
-        $this->canvas->setColor(null);
-    }
-
-    private function drawStar()
-    {
-        if ($this->starColor !== false) {
-            $this->canvas->setColor($this->getSafeColor($this->starColor));
-            $this->drawer->drawStar();
+        if ($this->drawable) {
+            $this->canvas->setColor(2);
+            $this->drawer->drawTree();
+            $this->canvas->setColor(3);
+            $this->drawer->drawRoot();
             $this->canvas->setColor(null);
         }
+        return $this;
+    }
+
+    private function drawChain(?int $number = null): self
+    {
+        if ($this->drawable) {
+            foreach ($this->iterateObjectList($this->chains, $number) as $i => $color) {
+                if ($color !== false) {
+                    $this->canvas->setColor($this->getSafeColor($color));
+                    $this->drawer->drawChain($i);
+                }
+            }
+            $this->canvas->setColor(null);
+        }
+        return $this;
+    }
+
+    private function drawGlassBalls(?int $number = null): self
+    {
+        if ($this->drawable) {
+            foreach ($this->iterateObjectList($this->glassBalls, $number) as $i => $color) {
+                if ($color !== false) {
+                    $this->canvas->setColor($this->getSafeColor($color));
+                    $this->drawer->drawGlassBalls($i);
+                }
+            }
+            $this->canvas->setColor(null);
+        }
+        return $this;
+    }
+
+    private function drawSweets(?int $number = null): self
+    {
+        if ($this->drawable) {
+            foreach ($this->iterateObjectList($this->sweets, $number) as $i => $color) {
+                if ($color !== false) {
+                    $this->canvas->setColor($this->getSafeColor($color));
+                    $this->drawer->drawSweets($i);
+                }
+            }
+            $this->canvas->setColor(null);
+        }
+        return $this;
+    }
+
+    private function drawLamps(?int $number = null): self
+    {
+        if ($this->drawable) {
+            foreach ($this->iterateObjectList($this->lamps, $number) as $i => $color) {
+                if ($color !== false) {
+                    $this->canvas->setColor($this->getSafeColor($color));
+                    $this->drawer->drawLamps($i);
+                }
+            }
+            $this->canvas->setColor(null);
+        }
+        return $this;
+    }
+
+    private function drawStar(): self
+    {
+        if ($this->drawable) {
+            if ($this->starColor !== false) {
+                $this->canvas->setColor($this->getSafeColor($this->starColor));
+                $this->drawer->drawStar();
+                $this->canvas->setColor(null);
+            }
+        }
+        return $this;
     }
 
     public function render(OutputInterface $output): self
     {
+        if (!$this->drawable) {
+            throw new Exception("Cannot render a non-drawable christmas tree");
+        }
         $this->canvas->render($output);
         return $this;
     }
 
     public function clearOutput(OutputInterface $output): self
     {
+        if (!$this->drawable) {
+            throw new Exception("Cannot render a non-drawable christmas tree");
+        }
         $this->canvas->clearOutput($output);
         return $this;
     }

@@ -33,5 +33,4 @@ class BufferOutput implements OutputInterface
     {
         return [$this->cols, $this->rows];
     }
-
 }

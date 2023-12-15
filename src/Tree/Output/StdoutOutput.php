@@ -9,11 +9,6 @@ class StdoutOutput extends StreamOutput
         parent::__construct(STDOUT);
     }
 
-    public function writeString(string $data): void
-    {
-        fputs($this->outputFd, $data);
-    }
-
     public function getTerminalSize(): array
     {
         $rows = 25;

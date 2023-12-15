@@ -29,6 +29,7 @@ class Manager
 
     public function createTree(): ?TreeScene
     {
+        $state = (new ChristmasTree(null, false))->dumpState();
         $code = $this->codeGenerator->generateCode();
         $tree = new TreeScene($code);
         $tree->setData($this->getDefaultState());
@@ -57,7 +58,7 @@ class Manager
 
     public function getTerminalCode(TreeScene $tree, int $cols, int $rows): string
     {
-        $christmasTree = new ChristmasTree();
+        $christmasTree = new ChristmasTree($tree->getData());
         $christmasTree->putStar(4);
         $buffer = new Output\BufferOutput($cols, $rows);
         $christmasTree->clearOutput($buffer);
