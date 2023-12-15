@@ -30,7 +30,7 @@ class TreeScene
         $this->id = $id;
     }
 
-    public function getId(): ?int
+    public function getId(): string
     {
         return $this->id;
     }
@@ -59,7 +59,7 @@ class TreeScene
         return $this;
     }
 
-    public function getRevision(): ?int
+    public function getRevision(): int
     {
         return $this->revision;
     }
@@ -71,7 +71,7 @@ class TreeScene
         return $this;
     }
 
-    public function getValidTill(): ?\DateTimeInterface
+    public function getValidTill(): \DateTimeInterface
     {
         return $this->validTill;
     }

@@ -1,3 +1,10 @@
 {% extends "base.html.twig" %}
 {% block body %}
+    <header>
+        <div class="url">
+            <a href="{{ treeUrl }}">{{ treeUrlShow }}</a>
+        </div>
+        <div class="clear"></div>
+    </header>
+    tree: {{ treeId }}
 {% endblock %}

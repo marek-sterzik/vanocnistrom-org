@@ -1,0 +1,27 @@
+* {
+    font-family: monospace;
+}
+
+header {
+    background-color: black;
+}
+
+div.clear {
+    clear: both;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header div.url {
+    float: right;
+    padding: 1em;
+    font-size: 1.5em;
+}

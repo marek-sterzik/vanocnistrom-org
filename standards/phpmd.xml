@@ -43,7 +43,7 @@
     <!-- Custom settings for specific rules -->
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
-            <property name="exceptions" value="id,ip,i,j,n,io,qb,os"/>
+            <property name="exceptions" value="id,ip,i,j,n,io,qb,os,x,y,z,a,b"/>
         </properties>
     </rule>
     <rule ref="rulesets/design.xml/CouplingBetweenObjects">
