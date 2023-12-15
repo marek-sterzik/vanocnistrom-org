@@ -1,10 +1,21 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/xterm.css') }}">
+    {{ parent() }}
+{% endblock %}
 {% block body %}
-    <header>
-        <div class="url">
-            <a class="tree" href="{{ treeUrl }}">{{ treeUrlShow }}</a> (<a class="api" href="#">api</a>)
-        </div>
-        <div class="clear"></div>
-    </header>
-    tree: {{ treeId }}
+    <div class="body">
+        <header>
+            <div class="url">
+                <a class="tree" href="{{ treeUrl }}">{{ treeUrlShow }}</a> (<a class="api" href="#">api</a>)
+            </div>
+            <div class="clear"></div>
+        </header>
+        <main>
+         
+            <div class="container">
+                <div class="terminal" data-config="{{ terminalConfig|json_encode() }}"></div>
+            </div>
+        </main>
+    </div>
 {% endblock %}

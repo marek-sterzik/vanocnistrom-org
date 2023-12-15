@@ -1,1 +1,1 @@
-import("xterm")
+import "./terminal.js"

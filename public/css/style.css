@@ -2,6 +2,45 @@
     font-family: monospace;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+div.body {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+header, main {
+    display: table-row;
+}
+
+main {
+    position: relative;
+    height: 100%;
+    background-color: black;
+}
+
+
+div.container {
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+div.container>div {
+    width: 100%;
+    height: 100%;
+}
+
 header {
     background-color: black;
     color: #bbb;
@@ -28,4 +67,8 @@ header div.url {
     float: right;
     padding: 1em;
     font-size: 1.5em;
+}
+
+.xterm .xterm-viewport {
+    overflow-y: hidden;
 }
