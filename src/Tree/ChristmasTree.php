@@ -127,6 +127,11 @@ class ChristmasTree
         return $this;
     }
 
+    public function getChain(): array
+    {
+        return $this->chains;
+    }
+
     public function putGlassBalls(?int $color = null): self
     {
         $this->setObjectList($this->glassBalls, null, $color);
@@ -134,7 +139,7 @@ class ChristmasTree
         return $this;
     }
 
-    public function putGlassBall(int $ballNumber, ?int $color = null): self
+    public function putGlassBallsPart(int $ballNumber, ?int $color = null): self
     {
         $this->setObjectList($this->glassBalls, $ballNumber, $color);
         $this->drawGlassBalls($ballNumber);
@@ -148,11 +153,16 @@ class ChristmasTree
         return $this;
     }
 
-    public function removeGlassBall(int $ballNumber): self
+    public function removeGlassBallsPart(int $ballNumber): self
     {
         $this->setObjectList($this->glassBalls, $ballNumber, false);
         $this->redraw();
         return $this;
+    }
+
+    public function getGlassBalls(): array
+    {
+        return $this->glassBalls;
     }
 
     public function putSweets(?int $color = null): self
@@ -162,7 +172,7 @@ class ChristmasTree
         return $this;
     }
 
-    public function putSweet(int $sweetNumber, ?int $color = null): self
+    public function putSweetsPart(int $sweetNumber, ?int $color = null): self
     {
         $this->setObjectList($this->sweets, $sweetNumber, $color);
         $this->drawSweets($sweetNumber);
@@ -176,11 +186,16 @@ class ChristmasTree
         return $this;
     }
 
-    public function removeSweet(int $sweetNumber): self
+    public function removeSweetsPart(int $sweetNumber): self
     {
         $this->setObjectList($this->sweets, $sweetNumber, false);
         $this->redraw();
         return $this;
+    }
+
+    public function getSweets(): array
+    {
+        return $this->sweets;
     }
 
     public function putLamps(?int $color = null): self
@@ -190,7 +205,7 @@ class ChristmasTree
         return $this;
     }
 
-    public function putLamp(int $lampNumber, ?int $color = null): self
+    public function putLampsPart(int $lampNumber, ?int $color = null): self
     {
         $this->setObjectList($this->lamps, $lampNumber, $color);
         $this->drawLamps($lampNumber);
@@ -204,11 +219,16 @@ class ChristmasTree
         return $this;
     }
 
-    public function removeLamp(int $lampNumber): self
+    public function removeLampsPart(int $lampNumber): self
     {
         $this->setObjectList($this->lamps, $lampNumber, false);
         $this->redraw();
         return $this;
+    }
+
+    public function getLamps(): array
+    {
+        return $this->lamps;
     }
 
     public function putStar(?int $color = null): self
@@ -216,6 +236,11 @@ class ChristmasTree
         $this->starColor = $color;
         $this->drawStar();
         return $this;
+    }
+
+    public function getStar(): int|false|null
+    {
+        return $this->starColor;
     }
 
     public function removeStar(): self

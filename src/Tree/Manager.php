@@ -33,7 +33,7 @@ class Manager
         $state = (new ChristmasTree(null, false))->dumpState();
         $code = $this->codeGenerator->generateCode();
         $tree = new TreeScene($code);
-        $tree->setData($this->getDefaultState());
+        $tree->setData($state);
         $tree->setPassword(null);
         $tree->setRevision(0);
         try {
@@ -70,8 +70,13 @@ class Manager
         return $buffer->getContent(true);
     }
 
-    private function getDefaultState(): array
+    public function invokeStateChange(TreeScene $tree, callable $callback): void
     {
-        return [];
+        $christmasTree = new ChristmasTree($tree->getData(), false);
+        $write = $callback($christmasTree);
+        if ($write) {
+            $tree->setData($christmasTree->dumpState());
+            $this->store($tree, false);
+        }
     }
 }
