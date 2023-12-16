@@ -12,3 +12,11 @@ sections:
       - endpoints/chains/put-part
       - endpoints/chains/delete
       - endpoints/chains/delete-part
+  - heading: "Skleněné koule"
+    subsections:
+      - endpoints/glass-balls/get
+      - endpoints/glass-balls/get-part
+      - endpoints/glass-balls/put
+      - endpoints/glass-balls/put-part
+      - endpoints/glass-balls/delete
+      - endpoints/glass-balls/delete-part

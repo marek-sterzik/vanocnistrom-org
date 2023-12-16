@@ -1,0 +1,6 @@
+template: "resources/endpoint.html.twig"
+method: DELETE
+route: api.glassBalls.collection
+result: {"success":true}
+description: |
+  Sundej ze stromku jednu skleněnou kouli.

@@ -1,0 +1,7 @@
+template: "resources/endpoint.html.twig"
+method: PUT
+route: api.glassBalls.collection
+result: {"success":true}
+request: {"color":"green"}
+description: |
+  Ozdob stromek skleněnými koulemi (všechny koule).
