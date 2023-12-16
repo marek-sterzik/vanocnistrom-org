@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 use App\Entity\TreeScene;
 use App\Tree\ChristmasTree;
+use Exception;
 
 /**
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
@@ -174,6 +175,30 @@ class ApiController extends AbstractController
         ];
     }
 
+    private function getRequestData(Request $request): array
+    {
+        $body = [];
+        if ($request->getMethod() === 'PUT') {
+            try {
+                $body = $request->toArray();
+            } catch (Exception $e) {
+                $body = [];
+            }
+        }
+        $get = ["label" => "label", "color" => "color", "labelColor" => "labelColor"];
+        $data = [];
+        foreach ($get as $key => $getKey) {
+            if (array_key_exists($key, $body)) {
+                $data[$key] = $body[$key];
+            } elseif (array_key_exists($getKey, $body)) {
+                $data[$key] = $body[$getKey];
+            } else {
+                $data[$key] = $request->query->get($getKey) ?? $request->query->get($key);
+            }
+        }
+        return $data;
+    }
+
     /**
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
@@ -185,11 +210,12 @@ class ApiController extends AbstractController
         } else {
             $treeMethod = $descriptor['putFragment'] ?? ('put' . ucfirst($descriptor['route']) . "Part");
         }
-        $color = $this->parseColor($request->query->get("color"));
+        $requestData = $this->getRequestData($request);
+        $color = $this->parseColor($requestData["color"]);
         if ($color === false) {
             return null;
         }
-        $labelColor = $this->parseColor($request->query->get("label-color"));
+        $labelColor = $this->parseColor($requestData["labelColor"]);
         if ($labelColor === false) {
             $labelColor = null;
             $labelColorValid = false;
@@ -197,7 +223,7 @@ class ApiController extends AbstractController
             $labelColorValid = true;
         }
 
-        $label = $request->query->get("label");
+        $label = $requestData["label"];
         if ($label !== null && !is_string($label)) {
             $labelValid = false;
             $label = null;
