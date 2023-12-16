@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use App\Entity\TreeScene;
 use App\Tree\ChristmasTree;
 
+/**
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ */
 #[Route("/{tree}")]
 class ApiController extends AbstractController
 {
@@ -198,7 +201,7 @@ class ApiController extends AbstractController
         if ($label !== null && !is_string($label)) {
             $labelValid = false;
             $label = null;
-        } else{
+        } else {
             $labelValid = true;
         }
         return [
