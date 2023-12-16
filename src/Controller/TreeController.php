@@ -30,6 +30,7 @@ class TreeController extends AbstractController
         return $this->render('main.html.twig', [
             "treeUrl" => $treeUrl,
             "treeUrlShow" => $treeUrlShow,
+            "tree" => $tree->getId(),
             "terminalConfig" => [
                 "optimalFit" => [120, 40],
                 "minimalFit" => [60, 40],
@@ -39,6 +40,26 @@ class TreeController extends AbstractController
                 "errorTimeout" => 5000,
                 "noDataTimeout" => 1000,
             ],
+        ]);
+    }
+
+    #[Route("/api", name: "tree.api")]
+    public function showApi(?TreeScene $tree): Response
+    {
+        if ($tree === null) {
+            return $this->render('error.html.twig', ["errorCode" => "tree_not_found"]);
+        }
+
+        $treeUrl = $this->generateUrl('tree', ["tree" => $tree->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
+        $treeUrlShow = preg_replace('|https?://|', '', $treeUrl);
+
+        $this->treeManager->store($tree, true);
+        $this->treeManager->cleanup();
+
+        return $this->render('api.html.twig', [
+            "treeUrl" => $treeUrl,
+            "treeUrlShow" => $treeUrlShow,
+            "tree" => $tree->getId(),
         ]);
     }
 

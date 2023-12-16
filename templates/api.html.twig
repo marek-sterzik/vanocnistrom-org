@@ -7,14 +7,12 @@
     <div class="body">
         <header>
             <div class="url">
-                <a class="tree" href="{{ treeUrl }}">{{ treeUrlShow }}</a> (<a class="api" href="{{ path("tree.api", {"tree": tree}) }}">api</a>)
+                <a class="tree" href="{{ treeUrl }}">{{ treeUrlShow }}</a> (<a class="api" href="{{ path("tree", {"tree": tree}) }}">strom</a>)
             </div>
             <div class="clear"></div>
         </header>
         <main>
-            <div class="container">
-                <div class="terminal" data-config="{{ terminalConfig|json_encode() }}"></div>
-            </div>
+            <h1>API</h1>
         </main>
     </div>
 {% endblock %}
