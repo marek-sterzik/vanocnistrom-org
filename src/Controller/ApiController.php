@@ -16,7 +16,7 @@ use Exception;
 /**
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
-#[Route("/{tree}")]
+#[Route("/api/{tree}")]
 class ApiController extends AbstractController
 {
     const MAPPING = [
