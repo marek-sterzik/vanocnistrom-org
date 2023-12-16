@@ -15,7 +15,13 @@ main div.block.hidden  h3::after {color: #080; font-weight: bold; font-size: 1.5
 main div.block>* {display: none;}
 main div.block.visible>* {display: block;}
 main div.block>h3 {display: block;}
-span.method {border: 1px solid #ccc; padding: .1em .2em; color: #000; border-radius: .3em; background-color: #eef;}
+span.method-container {display: inline-block; width: 4em; text-align: center;}
+span.method {border: 1px solid #ccc; padding: .1em .2em; color: #000; border-radius: .3em; background-color: #fff;}
+span.method.get {background-color: #dfd;}
+span.method.put {background-color: #ddf;}
+span.method.delete {background-color: #fdd;}
+span.method.post {background-color: #ffd;}
+span.uri span.param {color: #800;}
 main div.content h1, main div.content h2, main div.content h3, main div.content h4, main div.content h5, main div.content h6 {color: black; font-family: monospace;}
 div.container {left: 0; top: 0; position: absolute; width: 100%; height: 100%; overflow: hidden;}
 div.container>div {width: 100%; height: 100%;}

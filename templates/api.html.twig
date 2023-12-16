@@ -35,6 +35,21 @@
                         Ozdobí vánoční strom řetězem
                     </p>
                 </div>
+                <div class="block">
+                    <h3>{{ endpoint("GET", "api.chain.collection") }}</h3>
+                </div>
+                <div class="block">
+                    <h3>{{ endpoint("PUT", "api.chain.collection") }}</h3>
+                </div>
+                <div class="block">
+                    <h3>{{ endpoint("DELETE", "api.chain.collection") }}</h3>
+                </div>
+                <div class="block">
+                    <h3>{{ endpoint("POST", "api.chain.collection") }}</h3>
+                </div>
+                <div class="block">
+                    <h3>{{ endpoint("POST", "api.chain.fragment", {"fragment": "part"}) }}</h3>
+                </div>
             </div>
         </main>
     </div>
