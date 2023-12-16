@@ -20,3 +20,11 @@ sections:
       - endpoints/glass-balls/put-part
       - endpoints/glass-balls/delete
       - endpoints/glass-balls/delete-part
+  - heading: "Sladkosti"
+    subsections:
+      - endpoints/sweets/get
+      - endpoints/sweets/get-part
+      - endpoints/sweets/put
+      - endpoints/sweets/put-part
+      - endpoints/sweets/delete
+      - endpoints/sweets/delete-part

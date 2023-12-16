@@ -1,0 +1,7 @@
+template: "resources/endpoint.html.twig"
+method: PUT
+route: api.sweets.collection
+result: {"success":true}
+request: {"color":"green"}
+description: |
+  Ozdob stromek sladkostmi (všechny sladkosti).

@@ -1,0 +1,7 @@
+template: "resources/endpoint.html.twig"
+method: DELETE
+route: api.sweets.fragment
+params: {"fragment": "part"}
+result: {"success":true}
+description: |
+  Sundej ze stromku všechny sladkosti.

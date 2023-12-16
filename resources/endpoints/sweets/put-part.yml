@@ -1,0 +1,8 @@
+template: "resources/endpoint.html.twig"
+method: PUT
+route: api.sweets.fragment
+params: {"fragment": "part"}
+result: {"success":true}
+request: {"color":"green"}
+description: |
+  Ozdob stromek sladkostí (jednu).
