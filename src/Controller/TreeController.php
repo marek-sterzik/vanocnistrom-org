@@ -19,7 +19,7 @@ class TreeController extends AbstractController
     public function showTree(?TreeScene $tree): Response
     {
         if ($tree === null) {
-            return $this->render('error.html.twig', ["errorCode" => "tree_not_found"]);
+            return $this->treeNotFound();
         }
 
         $treeUrl = $this->generateUrl('tree', ["tree" => $tree->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
@@ -47,7 +47,7 @@ class TreeController extends AbstractController
     public function showApi(?TreeScene $tree): Response
     {
         if ($tree === null) {
-            return $this->render('error.html.twig', ["errorCode" => "tree_not_found"]);
+            return $this->treeNotFound();
         }
 
         $treeUrl = $this->generateUrl('tree', ["tree" => $tree->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
@@ -94,6 +94,13 @@ class TreeController extends AbstractController
             "data" => $data,
             "revision" => $tree->getRevision(),
         ];
+    }
+
+    private function treeNotFound(): Response
+    {
+        $response = $this->render('error.html.twig', ["errorCode" => "tree_not_found"]);
+        $response->setStatusCode(404);
+        return $response;
     }
 
     private function parseInt(Request $request, string $getField): ?int

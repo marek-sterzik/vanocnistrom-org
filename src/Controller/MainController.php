@@ -22,9 +22,11 @@ class MainController extends AbstractController
         if ($tree !== null) {
             return $this->redirectToRoute("tree", ["tree" => $tree->getId()]);
         } else {
-            return $this->render('error.html.twig', [
+            $response = $this->render('error.html.twig', [
                 "errorCode" => "cannot_create_tree",
             ]);
+            $response->setStatusCode(500);
+            return $response;
         }
     }
 }

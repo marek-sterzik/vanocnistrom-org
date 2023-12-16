@@ -1,12 +1,22 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <p>
-    Error code: {{ errorCode }}
-    </p><p>
-    {% if errorCode == 'cannot_create_tree' %}
-        Cannot create new tree.
-    {% elseif errorCode == 'tree_not_found' %}
-        Tree does not exist.
-    {% endif %}
-    </p>
+    <div class="body">
+        <main>
+            <div class="center table-cell">
+                <h1>Nastala chyba</h1>
+                <p>
+                    {% if errorCode == 'cannot_create_tree' %}
+                        Nelze vytvořit nový vánoční strom.
+                    {% elseif errorCode == 'tree_not_found' %}
+                        Požadovaný vánoční strom neexistuje.
+                    {% else %}
+                        Nastala neznámá chyba: {{ errorCode }}
+                    {% endif %}
+                </p>
+                <p>
+                    <a href="{{ path('main') }}">jít zpět na hlavní stránku</a>
+                </p>
+            </div>
+        </main>
+    </div>
 {% endblock %}

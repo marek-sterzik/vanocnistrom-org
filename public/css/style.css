@@ -16,6 +16,10 @@ div.body {
     height: 100%;
 }
 
+div.table-cell {
+    display: table-cell;
+}
+
 header, main {
     display: table-row;
 }
@@ -25,6 +29,11 @@ main {
     height: 100%;
     background-color: black;
     color: #bbb;
+}
+
+div.center {
+    text-align: center;
+    vertical-align: middle;
 }
 
 main h1, main h2, main h3, main h4, main h5, main h6 {
@@ -56,16 +65,16 @@ div.clear {
     clear: both;
 }
 
-header a {
+a {
     color: white;
     text-decoration: none;
 }
 
-header a.tree {
+a.tree {
     font-weight: bold;
 }
 
-header a:hover {
+a:hover {
     text-decoration: underline;
 }
 
