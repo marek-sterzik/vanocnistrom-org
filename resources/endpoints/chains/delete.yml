@@ -1,0 +1,6 @@
+template: "resources/endpoint.html.twig"
+method: DELETE
+route: api.chain.collection
+result: {"success":true}
+description: |
+  Sundej ze stromku část řetěz.

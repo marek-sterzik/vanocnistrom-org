@@ -1,0 +1,8 @@
+template: "resources/endpoint.html.twig"
+method: PUT
+route: api.chain.fragment
+params: {"fragment": "part"}
+result: {"success":true}
+request: {"color":"green"}
+description: |
+  Ozdob stromek řetězem (jednu konkrétní část řetězu).

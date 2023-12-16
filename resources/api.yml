@@ -6,5 +6,9 @@ sections:
       - access
   - heading: "Řetězy"
     subsections:
-      - endpoints/chains-get
-      - endpoints/chains-get-part
+      - endpoints/chains/get
+      - endpoints/chains/get-part
+      - endpoints/chains/put
+      - endpoints/chains/put-part
+      - endpoints/chains/delete
+      - endpoints/chains/delete-part

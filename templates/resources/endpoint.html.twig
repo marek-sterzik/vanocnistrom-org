@@ -5,6 +5,10 @@
         <p>
             {{ description|raw }}
         </p>
+        {% if request is defined %}
+            <h4>Tělo požadavku</h4>
+            <pre>{{ request|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+        {% endif %}
         {% if result is defined %}
             <h4>Návratová hodnota</h4>
             <pre>{{ result|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>

@@ -1,0 +1,7 @@
+template: "resources/endpoint.html.twig"
+method: PUT
+route: api.chain.collection
+result: {"success":true}
+request: {"color":"green"}
+description: |
+  Ozdob stromek řetězem (všechny části řetězu najednou).
