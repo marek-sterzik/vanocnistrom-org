@@ -1,0 +1,4 @@
+{% macro load(name) %}
+    {% set resource = load_resource(name) %}
+    {% include resource.template with resource %}
+{% endmacro %}

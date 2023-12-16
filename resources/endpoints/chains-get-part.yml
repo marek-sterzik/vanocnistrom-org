@@ -1,0 +1,9 @@
+template: "resources/endpoint.html.twig"
+method: GET
+route: api.chain.fragment
+params: {"fragment": "part"}
+result: {"id":2,"exists":true,"color":"yellow"}
+description: |
+  Vrať informace o části řetězu na stromku.
+
+

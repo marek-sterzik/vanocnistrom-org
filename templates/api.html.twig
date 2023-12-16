@@ -14,42 +14,8 @@
         <main>
             <h1>API</h1>
             <div class="content">
-                <h2>Obecné informace</h2>
-                <div class="block">
-                    <h3>Přístup k API</h3>
-                    <p>
-                        Toto API umžňuje zdobit vánoční strom. Každý vánoční strom má svůj identifikátor, který jej jednoznačně identifikuje.
-                        Identifikátor se zobrazuje v pravém horním rohu.
-                    </p>
-                </div>
-                <h2>Řetězy</h2>
-                <div class="block">
-                    <h3><span class="method get">GET</span> {{ path("api.chain.collection", {"tree":"[tree]"}) }}</h3>
-                    <p>
-                        Zjistí stav řetězu na vánočním stromě.
-                    </p>
-                </div>
-                <div class="block">
-                    <h3><span class="method put">PUT</span> {{ path("api.chain.collection", {"tree":"[tree]"}) }}</h3>
-                    <p>
-                        Ozdobí vánoční strom řetězem
-                    </p>
-                </div>
-                <div class="block">
-                    <h3>{{ endpoint("GET", "api.chain.collection") }}</h3>
-                </div>
-                <div class="block">
-                    <h3>{{ endpoint("PUT", "api.chain.collection") }}</h3>
-                </div>
-                <div class="block">
-                    <h3>{{ endpoint("DELETE", "api.chain.collection") }}</h3>
-                </div>
-                <div class="block">
-                    <h3>{{ endpoint("POST", "api.chain.collection") }}</h3>
-                </div>
-                <div class="block">
-                    <h3>{{ endpoint("POST", "api.chain.fragment", {"fragment": "part"}) }}</h3>
-                </div>
+                {% import "resource_loader.html.twig" as resourceLoader %}
+                {{ resourceLoader.load("api") }}
             </div>
         </main>
     </div>

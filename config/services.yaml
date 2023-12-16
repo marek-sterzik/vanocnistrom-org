@@ -37,6 +37,9 @@ services:
         arguments:
             $assetBaseDir: '%kernel.project_dir%/public'
             $versionLinkWildCard: 'assets-v*'
+    App\Utility\ResourceLoader:
+        arguments:
+            $resourceDir: '%kernel.project_dir%/resources'
     App\Controller\AdminerController:
         arguments:
             $databaseUrl: '%env(resolve:DATABASE_URL)%'

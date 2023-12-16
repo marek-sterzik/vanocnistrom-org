@@ -1,0 +1,14 @@
+{% if not params is defined %}{% set params = {} %}{% endif %}
+<div class="block">
+    <h3>{{ endpoint(method, route, params) }}</h3>
+    <div>
+        <p>
+            {{ description|raw }}
+        </p>
+        {% if result is defined %}
+            <h4>Návratová hodnota</h4>
+            <pre>{{ result|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+        {% endif %}
+    </div>
+</div>
+

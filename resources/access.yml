@@ -1,0 +1,5 @@
+template: "resources/special.html.twig"
+heading: "Přístup k API"
+html: |
+  Toto API umžňuje zdobit vánoční strom. Každý vánoční strom má svůj identifikátor, který jej jednoznačně identifikuje.
+  Identifikátor se zobrazuje v pravém horním rohu.

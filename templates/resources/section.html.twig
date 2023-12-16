@@ -1,0 +1,8 @@
+{% import "resource_loader.html.twig" as resourceLoader %}
+{% for section in sections %}
+    <h{{ headingLevel }}>{{ section.heading }}</h{{ headingLevel }}>
+    {% for subsection in section.subsections %}
+        {{ resourceLoader.load(subsection) }}
+    {% endfor %}
+
+{% endfor %}

@@ -1,0 +1,10 @@
+template: "resources/section.html.twig"
+headingLevel: 2
+sections:
+  - heading: "Obecné informace"
+    subsections:
+      - access
+  - heading: "Řetězy"
+    subsections:
+      - endpoints/chains-get
+      - endpoints/chains-get-part

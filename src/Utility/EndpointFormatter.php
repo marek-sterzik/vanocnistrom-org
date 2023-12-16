@@ -20,7 +20,7 @@ class EndpointFormatter
 
         $uri = $this->router->generate(
             $routeName,
-            array_map(function ($item){
+            array_map(function ($item) {
                 return sprintf("{%s}", $item);
             }, $params)
         );
