@@ -250,7 +250,7 @@ class ChristmasTree
         return $this;
     }
 
-    public function putGift(string $label, ?int $packageColor = null, ?int $labelColor = null): self
+    public function putGifts(string $label, ?int $packageColor = null, ?int $labelColor = null): self
     {
         $this->putGiftLogical([
             'label' => $label,
@@ -261,7 +261,18 @@ class ChristmasTree
         return $this;
     }
 
-    private function putGiftLogical(mixed $giftDescriptor): self
+    public function putGiftsPart(int $gift, string $label, ?int $packageColor = null, ?int $labelColor = null): self
+    {
+        $this->putGiftLogical([
+            'label' => $label,
+            'packageColor' => $packageColor,
+            'labelColor' => $labelColor,
+        ], $gift);
+        $this->drawGifts();
+        return $this;
+    }
+
+    private function putGiftLogical(mixed $giftDescriptor, ?int $part = null): self
     {
         if (!is_array($giftDescriptor) || !array_key_exists('label', $giftDescriptor)) {
             return $this;
@@ -278,11 +289,19 @@ class ChristmasTree
         if (!is_null($giftDescriptor['labelColor']) && !is_int($giftDescriptor['labelColor'])) {
             return $this;
         }
-        $this->gifts[] = [
+        $record  = [
             'label' => $giftDescriptor['label'],
             'packageColor' => $giftDescriptor['packageColor'],
             'labelColor' => $giftDescriptor['labelColor'],
         ];
+        if ($part === count($this->gifts)) {
+            $part = null;
+        }
+        if ($part === null) {
+            $this->gifts[] = $record;
+        } elseif (isset($this->gifts[$part])) {
+            $this->gifts[$part] = $record;
+        }
         while (count($this->gifts) > $this->numberOfGifts) {
             array_shift($this->gifts);
         }
@@ -296,13 +315,18 @@ class ChristmasTree
         return $this;
     }
 
-    public function removeGift(int $giftNumber): self
+    public function removeGiftsPart(int $giftNumber): self
     {
         if (isset($this->gifts[$giftNumber])) {
             array_splice($this->gifts, $giftNumber, 1);
         }
         $this->redraw();
         return $this;
+    }
+
+    public function getGifts(): array
+    {
+        return $this->gifts;
     }
 
     private function initializeObjectList(int $number, mixed $initialValue): array

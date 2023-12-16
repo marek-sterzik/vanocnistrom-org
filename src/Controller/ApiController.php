@@ -21,6 +21,7 @@ class ApiController extends AbstractController
         "glassBalls" => ["type" => "multi"],
         "sweets" => ["type" => "multi"],
         "lamps" => ["type" => "multi"],
+        "gifts" => ["type" => "gifts"],
     ];
 
     const INVOCATION_TYPES = [
@@ -33,6 +34,11 @@ class ApiController extends AbstractController
             "GET" => "invokeGetMulti",
             "PUT" => "invokePutMulti",
             "DELETE" => "invokeDeleteMulti",
+        ],
+        "gifts" => [
+            "GET" => "invokeGetGifts",
+            "PUT" => "invokePutGifts",
+            "DELETE" => "invokeDeleteGifts",
         ],
     ];
 
@@ -71,6 +77,8 @@ class ApiController extends AbstractController
     #[Route("/sweets/{fragment}", name: "api.sweets.fragment")]
     #[Route("/lamps", name: "api.lamps.collection")]
     #[Route("/lamps/{fragment}", name: "api.lamps.fragment")]
+    #[Route("/gifts", name: "api.gifts.collection")]
+    #[Route("/gifts/{fragment}", name: "api.gifts.fragment")]
     public function invokeEndpoint(?TreeScene $tree, Request $request): Response
     {
         $route = $request->get('_route');
@@ -178,10 +186,29 @@ class ApiController extends AbstractController
         if ($color === false) {
             return null;
         }
+        $labelColor = $this->parseColor($request->query->get("label-color"));
+        if ($labelColor === false) {
+            $labelColor = null;
+            $labelColorValid = false;
+        } else {
+            $labelColorValid = true;
+        }
+
+        $label = $request->query->get("label");
+        if ($label !== null && !is_string($label)) {
+            $labelValid = false;
+            $label = null;
+        } else{
+            $labelValid = true;
+        }
         return [
             "treeMethod" => $treeMethod,
             "getter" => $getter,
             "color" => $color,
+            "labelColor" => $labelColor,
+            "labelColorValid" => $labelColorValid,
+            "label" => $label,
+            "labelValid" => $labelValid,
         ];
     }
 
@@ -333,6 +360,122 @@ class ApiController extends AbstractController
         );
         if (!$success) {
             return $this->getErrorResponse(404, "Fragment not found");
+        }
+        return $this->getSuccessResponse(["success" => true]);
+    }
+
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+    private function invokeGetGifts(array $params, string $method, TreeScene $tree): Response
+    {
+        $state = null;
+        $fragment = $params['fragment'];
+        $this->treeManager->invokeStateChange(
+            $tree,
+            function (ChristmasTree $christmasTree) use (&$state, $method, $fragment) {
+                $stateAll = $christmasTree->$method();
+                if ($fragment !== null) {
+                    if (isset($stateAll[$fragment])) {
+                        $state = $this->giftToApi($fragment, $stateAll[$fragment]);
+                    }
+                } else {
+                    $state = [];
+                    foreach ($stateAll as $index => $color) {
+                        $state[] = array_merge(["id" => $index], $this->colorToApi($color));
+                    }
+                }
+                return false;
+            }
+        );
+        if ($state === null) {
+            return $this->getErrorResponse(404, "Gift not found");
+        }
+        return $this->getSuccessResponse($state);
+    }
+
+    private function getGiftColor(int|false|null $color): string
+    {
+        $info = $this->colorToApi($color);
+        return $info['color'] ?? 'none';
+    }
+
+    private function giftToApi(int $fragment, array $data): array
+    {
+        $packageColor = $this->getGiftColor($data['packageColor']);
+        $labelColor = $this->getGiftColor($data['labelColor']);
+        return [
+            "id" => $fragment,
+            "packageColor" => $packageColor,
+            "labelColor" => $labelColor,
+            "label" => $data['label'],
+        ];
+    }
+
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+    private function invokePutGifts(array $params, string $method, TreeScene $tree): Response
+    {
+        if (!$params['labelColorValid'] || !$params['labelValid']) {
+            return $this->getErrorResponse(400, "Bad request");
+        }
+        $fragment = $params['fragment'];
+        $getter = $params['getter'];
+        $gift = [
+            'label' => $params['label'] ?? '',
+            'packageColor' => $params['color'],
+            'labelColor' => $params['labelColor'] ?? $params['color'],
+        ];
+        $success = false;
+        $this->treeManager->invokeStateChange(
+            $tree,
+            function (ChristmasTree $christmasTree) use (&$success, $gift, $method, $getter, $fragment) {
+                if ($fragment === null) {
+                    $christmasTree->$method($gift['label'], $gift['packageColor'], $gift['labelColor']);
+                    $success = true;
+                } else {
+                    $state = $christmasTree->$getter();
+                    if (isset($state[$fragment]) || $fragment === count($state)) {
+                        $christmasTree->$method($fragment, $gift['label'], $gift['packageColor'], $gift['labelColor']);
+                        $success = true;
+                    }
+                }
+                return $success;
+            }
+        );
+        if (!$success) {
+            return $this->getErrorResponse(404, "Gift not found");
+        }
+        return $this->getSuccessResponse(["success" => true]);
+    }
+
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+    private function invokeDeleteGifts(array $params, string $method, TreeScene $tree): Response
+    {
+        $fragment = $params['fragment'];
+        $getter = $params['getter'];
+        $success = false;
+        $this->treeManager->invokeStateChange(
+            $tree,
+            function (ChristmasTree $christmasTree) use (&$success, $method, $getter, $fragment) {
+                if ($fragment === null) {
+                    $christmasTree->$method();
+                    $success = true;
+                } else {
+                    $state = $christmasTree->$getter();
+                    if (isset($state[$fragment])) {
+                        $christmasTree->$method($fragment);
+                        $success = true;
+                    }
+                }
+                return $success;
+            }
+        );
+        if (!$success) {
+            return $this->getErrorResponse(404, "Gift not found");
         }
         return $this->getSuccessResponse(["success" => true]);
     }
