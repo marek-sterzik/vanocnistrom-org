@@ -185,7 +185,7 @@ class ApiController extends AbstractController
                 $body = [];
             }
         }
-        $get = ["label" => "label", "color" => "color", "labelColor" => "labelColor"];
+        $get = ["label" => "label", "color" => "color", "labelColor" => "label-color"];
         $data = [];
         foreach ($get as $key => $getKey) {
             if (array_key_exists($key, $body)) {

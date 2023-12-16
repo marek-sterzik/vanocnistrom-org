@@ -1,89 +1,28 @@
-* {
-    font-family: monospace;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-div.body {
-    display: table;
-    width: 100%;
-    height: 100%;
-}
-
-div.table-cell {
-    display: table-cell;
-}
-
-header, main {
-    display: table-row;
-}
-
-main {
-    position: relative;
-    height: 100%;
-    background-color: black;
-    color: #bbb;
-}
-
-div.center {
-    text-align: center;
-    vertical-align: middle;
-}
-
-main h1, main h2, main h3, main h4, main h5, main h6 {
-    color: white;
-    text-align: center;
-}
-
-
-div.container {
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-div.container>div {
-    width: 100%;
-    height: 100%;
-}
-
-header {
-    background-color: black;
-    color: #bbb;
-}
-
-div.clear {
-    clear: both;
-}
-
-a {
-    color: white;
-    text-decoration: none;
-}
-
-a.tree {
-    font-weight: bold;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-header div.url {
-    float: right;
-    padding: 1em;
-    font-size: 1.5em;
-}
-
-.xterm .xterm-viewport {
-    overflow-y: hidden;
-}
+html, body {margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: monospace;}
+div.body {display: table; width: 100%; height: 100%;}
+div.table-cell {display: table-cell;}
+header, main {display: table-row;}
+main {position: relative; height: 100%; background-color: black; color: #bbb;}
+div.content {background-color: white; max-width: 70em; margin: auto; color: black; padding: .5em 1em; border-radius: .7em; font-family: sans-serif; box-shadow: 10px 10px 10px #444;}
+div.content p {text-align: justify;}
+div.center {text-align: center; vertical-align: middle;}
+main h1, main h2, main h3, main h4, main h5, main h6 {color: white; text-align: center;}
+main div.block h3 {text-align: start; border: 1px solid #bbb; border-radius: .5em; padding: .5em 1em; box-shadow: 2px 2px 5px #aaa;}
+main div.block h3:hover {background-color: #eee; position: relative;}
+main div.block.visible h3 {background-color: #ddd;}
+main div.block.visible h3::after {color: #800; font-weight: bold; font-size: 1.5em; position: relative; top: -0.25em; width: 1em; height: 1em; content: '-'; float: right;}
+main div.block.hidden  h3::after {color: #080; font-weight: bold; font-size: 1.5em; position: relative; top: -0.25em; width: 1em; height: 1em; content: '+'; float: right;}
+main div.block>* {display: none;}
+main div.block.visible>* {display: block;}
+main div.block>h3 {display: block;}
+span.method {border: 1px solid #ccc; padding: .1em .2em; color: #000; border-radius: .3em; background-color: #eef;}
+main div.content h1, main div.content h2, main div.content h3, main div.content h4, main div.content h5, main div.content h6 {color: black; font-family: monospace;}
+div.container {left: 0; top: 0; position: absolute; width: 100%; height: 100%; overflow: hidden;}
+div.container>div {width: 100%; height: 100%;}
+header {background-color: black;color: #bbb;}
+div.clear {clear: both;}
+a {color: white; text-decoration: none;}
+a.tree {font-weight: bold;}
+a:hover {text-decoration: underline;}
+header div.url {float: right; padding: 1em; font-size: 1.5em;}
+.xterm .xterm-viewport {overflow-y: hidden;}
