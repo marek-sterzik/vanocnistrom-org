@@ -1,17 +1,38 @@
 {% if not params is defined %}{% set params = {} %}{% endif %}
+{% if not paramDescription is defined %}{% set paramDescription = {} %}{% endif %}
+{% set paramDescription = {"tree":"id vánočního stromku"}|merge(paramDescription) %}
 <div class="block">
     <h3>{{ endpoint(method, route, params) }}</h3>
     <div>
         <p>
             {{ description|raw }}
         </p>
+        {% if paramDescription is defined and not paramDescription is empty %}
+            <div class="box">
+                <h4>Parametry</h3>
+                <div class="boxcontent">
+                    <table>
+                        {% for name, description in paramDescription %}
+                            <tr>
+                                <td><span class="uri"><span class="param">{{ "{" ~ name ~ "}" }}</span></span></td>
+                                <td>- {{ description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        {% endif %}
         {% if request is defined %}
-            <h4>Tělo požadavku</h4>
-            <pre>{{ request|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+            <div class="box">
+                <h4>Tělo požadavku</h4>
+                <pre class="hl">{{ request|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+            </div>
         {% endif %}
         {% if result is defined %}
-            <h4>Návratová hodnota</h4>
-            <pre>{{ result|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+            <div class="box">
+                <h4>Tělo odpovědi</h4>
+                <pre class="hl">{{ result|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+            </div>
         {% endif %}
     </div>
 </div>

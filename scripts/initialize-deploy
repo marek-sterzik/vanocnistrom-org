@@ -4,10 +4,15 @@ if [ "$1" == "prod" ]; then
     flags="--no-interaction --no-dev"
     composer dump-env prod
     lib/asset-update
+    cp node_modules/xterm/css/xterm.css public/css/xterm.css
+    cp node_modules/highlight.js/styles/default.css public/css/highlight.css
 else
     flags=""
     test -f .env.local.php && rm -f .env.local.php
     lib/asset-update remove
+    rm -f public/css/xterm.css public/css/highlight.css
+    ln -s ../../node_modules/xterm/css/xterm.css public/css/xterm.css
+    ln -s ../../node_modules/highlight.js/styles/default.css public/css/highlight.css
 fi
 
 composer install $flags

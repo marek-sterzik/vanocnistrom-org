@@ -3,7 +3,7 @@ method: PUT
 route: api.gifts.fragment
 params: {"fragment": "part"}
 result: {"success":true}
-  paramDescription:
+paramDescription:
   part: Pořadové číslo daru.
 request: {"color":"green", "labelColor": "blue", "label": "Jan"}
 description: |

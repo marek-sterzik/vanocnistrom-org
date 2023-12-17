@@ -3,6 +3,7 @@
 /.config.env.new
 /invoke
 /public/css/xterm.css
+/public/css/highlight.css
 
 #assets
 /public/assets-v*
