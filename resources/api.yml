@@ -4,6 +4,11 @@ sections:
   - heading: "Obecné informace"
     subsections:
       - access
+  - heading: "Hvězda"
+    subsections:
+      - endpoints/star/get
+      - endpoints/star/put
+      - endpoints/star/delete
   - heading: "Řetězy"
     subsections:
       - endpoints/chains/get
@@ -28,3 +33,19 @@ sections:
       - endpoints/sweets/put-part
       - endpoints/sweets/delete
       - endpoints/sweets/delete-part
+  - heading: "Svíčky (světla)"
+    subsections:
+      - endpoints/lamps/get
+      - endpoints/lamps/get-part
+      - endpoints/lamps/put
+      - endpoints/lamps/put-part
+      - endpoints/lamps/delete
+      - endpoints/lamps/delete-part
+  - heading: "Dary"
+    subsections:
+      - endpoints/gifts/get
+      - endpoints/gifts/get-part
+      - endpoints/gifts/put
+      - endpoints/gifts/put-part
+      - endpoints/gifts/delete
+      - endpoints/gifts/delete-part

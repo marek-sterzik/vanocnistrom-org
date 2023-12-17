@@ -1,6 +1,7 @@
 template: "resources/endpoint.html.twig"
 method: DELETE
-route: api.sweets.collection
+route: api.lamps.fragment
+params: {"fragment": "part"}
 result: {"success":true}
 description: |
-  Sundej ze stromku všechny sladkosti.
+  Sundej ze stromku jeden pár svíček.

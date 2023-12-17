@@ -1,7 +1,8 @@
 template: "resources/endpoint.html.twig"
-method: DELETE
-route: api.glassBalls.fragment
+method: PUT
+route: api.lamps.fragment
 params: {"fragment": "part"}
 result: {"success":true}
+request: {"color":"green"}
 description: |
-  Sundej ze stromku jednu skleněnou kouli.
+  Ozdob stromek jedním párem svíček.

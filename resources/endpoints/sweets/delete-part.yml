@@ -4,4 +4,4 @@ route: api.sweets.fragment
 params: {"fragment": "part"}
 result: {"success":true}
 description: |
-  Sundej ze stromku všechny sladkosti.
+  Sundej ze stromku jednu sladkost.

@@ -410,8 +410,8 @@ class ApiController extends AbstractController
                     }
                 } else {
                     $state = [];
-                    foreach ($stateAll as $index => $color) {
-                        $state[] = array_merge(["id" => $index], $this->colorToApi($color));
+                    foreach ($stateAll as $index => $stateOne) {
+                        $state[] = $this->giftToApi($index, $stateOne);
                     }
                 }
                 return false;

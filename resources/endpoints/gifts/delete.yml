@@ -1,6 +1,6 @@
 template: "resources/endpoint.html.twig"
 method: DELETE
-route: api.sweets.collection
+route: api.gifts.collection
 result: {"success":true}
 description: |
-  Sundej ze stromku všechny sladkosti.
+  Odstraň všechny dary pod stromkem.

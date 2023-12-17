@@ -1,0 +1,9 @@
+template: "resources/endpoint.html.twig"
+method: GET
+route: api.gifts.fragment
+params: {"fragment": "part"}
+result: {"id":0,"packageColor":"red","labelColor":"red","label":"George"}
+description: |
+  Vrať informace o jednom daru. (Pozor, id darů se průběžně mění!)
+
+

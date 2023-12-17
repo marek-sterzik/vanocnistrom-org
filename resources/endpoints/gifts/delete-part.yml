@@ -1,7 +1,7 @@
 template: "resources/endpoint.html.twig"
 method: DELETE
-route: api.glassBalls.fragment
+route: api.gifts.fragment
 params: {"fragment": "part"}
 result: {"success":true}
 description: |
-  Sundej ze stromku jednu skleněnou kouli.
+  Odstraň jeden dar pod stromkem. (Pozor, id darů se průběžně mění!)

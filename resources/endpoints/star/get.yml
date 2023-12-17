@@ -1,0 +1,7 @@
+template: "resources/endpoint.html.twig"
+method: GET
+route: api.star
+result: {"exists":true,"color":"red"}
+description: |
+  Vrať informace o hvězdě na stromku.
+

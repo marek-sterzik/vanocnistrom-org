@@ -1,0 +1,8 @@
+template: "resources/endpoint.html.twig"
+method: PUT
+route: api.gifts.fragment
+params: {"fragment": "part"}
+result: {"success":true}
+request: {"color":"green", "labelColor": "blue", "label": "Jan"}
+description: |
+  Polož dar pod stromek na konkrétní pozici, vyměň dar. (Pozor, id darů se průběžně mění!)

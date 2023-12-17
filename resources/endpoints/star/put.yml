@@ -1,6 +1,7 @@
 template: "resources/endpoint.html.twig"
-method: DELETE
-route: api.chain.collection
+method: PUT
+route: api.star
 result: {"success":true}
+request: {"color":"blue"}
 description: |
-  Sundej ze stromku celý řetěz.
+  Ozdob stromek hvězdou.
