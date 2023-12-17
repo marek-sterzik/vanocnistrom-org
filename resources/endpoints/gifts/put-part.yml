@@ -5,6 +5,10 @@ params: {"fragment": "part"}
 result: {"success":true}
 paramDescription:
   part: Pořadové číslo daru.
-request: {"color":"green", "labelColor": "blue", "label": "Jan"}
+request: {"color": "green", "labelColor": "blue", "label": "Jan"}
+requestDescription:
+  color: Barva dárku
+  labelColor: Barva popisku na dárku
+  label: Popisek na dárku
 description: |
   Polož dar pod stromek na konkrétní pozici, vyměň dar. (Pozor, id darů se průběžně mění!)

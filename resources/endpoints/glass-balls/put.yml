@@ -3,5 +3,7 @@ method: PUT
 route: api.glassBalls.collection
 result: {"success":true}
 request: {"color":"green"}
+requestDescription:
+  color: Barva skleněné koule
 description: |
   Ozdob stromek skleněnými koulemi (všechny koule).

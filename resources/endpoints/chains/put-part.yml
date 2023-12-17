@@ -6,5 +6,7 @@ paramDescription:
   part: Pořadové číslo části řetězu.
 result: {"success":true}
 request: {"color":"green"}
+requestDescription:
+  color: Barva řetězu
 description: |
   Ozdob stromek řetězem (jednu konkrétní část řetězu).

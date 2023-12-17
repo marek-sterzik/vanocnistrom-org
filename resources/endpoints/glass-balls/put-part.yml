@@ -6,5 +6,7 @@ paramDescription:
   part: Pořadové číslo skleněné koule.
 result: {"success":true}
 request: {"color":"green"}
+requestDescription:
+  color: Barva skleněné koule
 description: |
   Ozdob stromek skleněnou koulí (jednu).

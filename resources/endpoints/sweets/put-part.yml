@@ -6,5 +6,7 @@ paramDescription:
   part: Pořadové číslo sladkosti.
 result: {"success":true}
 request: {"color":"green"}
+requestDescription:
+  color: Barva sladkosti
 description: |
   Ozdob stromek sladkostí (jednu).

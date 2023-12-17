@@ -3,5 +3,7 @@ method: PUT
 route: api.star
 result: {"success":true}
 request: {"color":"blue"}
+requestDescription:
+  color: Barva hvězdy
 description: |
   Ozdob stromek hvězdou.

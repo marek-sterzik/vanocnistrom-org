@@ -3,5 +3,7 @@ method: PUT
 route: api.lamps.collection
 result: {"success":true}
 request: {"color":"green"}
+requestDescription:
+  color: Barva svíček
 description: |
   Ozdob stromek svíčkami.

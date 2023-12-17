@@ -3,5 +3,9 @@ method: PUT
 route: api.gifts.collection
 result: {"success":true}
 request: {"color":"green", "labelColor": "blue", "label": "Jan"}
+requestDescription:
+  color: Barva dárku
+  labelColor: Barva popisku na dárku
+  label: Popisek na dárku
 description: |
   Polož dar pod stromek. (Pozor, id darů se průběžně mění!)

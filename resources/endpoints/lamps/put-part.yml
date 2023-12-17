@@ -6,5 +6,7 @@ paramDescription:
   part: Pořadové číslo páru svíček.
 result: {"success":true}
 request: {"color":"green"}
+requestDescription:
+  color: Barva svíček
 description: |
   Ozdob stromek jedním párem svíček.

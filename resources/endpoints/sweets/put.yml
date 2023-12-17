@@ -3,5 +3,7 @@ method: PUT
 route: api.sweets.collection
 result: {"success":true}
 request: {"color":"green"}
+requestDescription:
+  color: Barva sladkosti
 description: |
   Ozdob stromek sladkostmi (všechny sladkosti).
