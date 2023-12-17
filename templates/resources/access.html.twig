@@ -1,0 +1,31 @@
+<p>
+Toto API umžňuje zdobit vánoční strom. Každý vánoční strom má svůj identifikátor, který jej jednoznačně identifikuje.
+Identifikátor se zobrazuje v pravém horním rohu scény. Ten je potom potřeba pro vykonávání všech api dotazů.
+</p>
+<p>
+Základní URL:
+</p>
+<div class="api-base">
+    <a href="{{ url('main') }}">{{ url('main') }}</a>
+</div>
+Aplikace umoňuje buď standardní HTTP REST API přístup a nebo umožňuje také přístup, kde jsou všechny metody realizovány pouze skrze metodu GET. Tento přístup je užitečný pro testování, popřípadě pro možnost přímé manuální realizace příkazu skrze prohlížeč. Pro tento režim platí, že všechny parametry je potřeba předat skrze query string (tj. get parametry v url) Ke spuštění v tomto režimu je potřeba splnit tyto podmínky:
+
+<ul>
+    <li>pouze metoda <span class="method get">GET</span></li>
+    <li>parametr <span class="param">method</span> obsahuje reálnou metodu</li>
+    <li>pokud má mít požadavek tělo, všechny parametry těla jsou předány jako query string</li>
+</ul>
+
+Například, požadavek:
+<div class="api-base">
+    <span class="method put">PUT</span> <span class="uri">{{ path("api.gifts.collection", {"tree": "ABC"}) }}</span>
+</div>
+s tělem
+<div class="box">
+    <pre class="hl">{{ {"color": "green", "label": "Jan"}|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+</div>
+
+jde také realizovat jako:
+<div class="api-base">
+    <span class="method put">GET</span> <span class="uri">{{ path("api.gifts.collection", {"tree": "ABC"}) }}?method=PUT&amp;color=green&amp;label=Jan</span>
+</div>

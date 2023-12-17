@@ -4,6 +4,7 @@ div.table-cell {display: table-cell;}
 header, main {display: table-row;}
 main {position: relative; height: 100%; background-color: black; color: #bbb;}
 div.content {background-color: white; max-width: 70em; margin: auto; color: black; padding: .5em 1em; border-radius: .7em; font-family: sans-serif; box-shadow: 10px 10px 10px #444;}
+div.content a {color: black;}
 div.content p {text-align: justify;}
 div.center {text-align: center; vertical-align: middle;}
 main h1, main h2 {text-align: center;}
@@ -24,8 +25,8 @@ span.method.put {background-color: #ddf;}
 span.method.delete {background-color: #fdd;}
 span.method.post {background-color: #ffd;}
 span.uri {font-family: monospace; font-weight: bold;}
-span.uri span.param {color: #800;}
-div.box {background-color: #f3f3f3; max-width: 20em; box-shadow: 3px 3px 10px #ccc; margin: 1em 0;}
+span.param {font-family: monospace; color: #800;}
+div.box {background-color: #f3f3f3; max-width: 20em; box-shadow: 3px 3px 10px #ccc; margin: 1em auto;}
 div.box h4 {background-color: #bbb; padding: .3em 1em; margin: 0;}
 div.box pre {max-height: 20em; overflow: auto; margin: 0; padding: .5em; font-size: .9em;}
 div.box div.boxcontent {padding: .5em;}
@@ -42,3 +43,4 @@ header div.url {float: right; padding: 1em; font-size: 1.5em;}
 span.color {display: inline-block; width: 1em; height: 1em; border: 1px solid #eee; box-shadow: 1px 1px 3px #ddd;}
 span.color-description {font-family: monospace; font-weight: bold;}
 td.sp {padding-right: 1em;}
+div.api-base {font-family: monospace; font-weight: bold; font-size: 1.5em; text-align: center; margin: 1em 0}
