@@ -1,10 +1,19 @@
-Kdekoliv se zadávají barvy, zadávají se pomocí těchto názvů:
-<table>
-    {% for color in colors %}
-        <tr>
-            <td class="sp"><span class="color-description">{{ color.color }}</span></td>
-            <td><span class="color" style="background-color: {{ color.html }}"></span></td>
-            <td>{{ color.description }}</td>
-        </tr>
-    {% endfor %}
-</table>
+Kdekoliv se zadávají barvy, je možné barvy udávat dvěma způsoby:
+<ol>
+    <li>celým číslem v rozsahu 0 – 15</li>
+    <li>názvem pomocí následující tabulky</li>
+</ol>
+<div class="box">
+        <h4>Barvy</h3>
+    <div class="boxcontent">
+        <table>
+            {% for color in colors %}
+                <tr>
+                    <td class="sp"><span class="color-description">{{ color.color }}</span></td>
+                    <td><span class="color" style="background-color: {{ color.html }}"></span></td>
+                    <td>{{ color.description }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

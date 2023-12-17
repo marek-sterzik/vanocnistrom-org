@@ -2,48 +2,54 @@ template: "resources/special.html.twig"
 heading: "Barvy"
 innerTemplate: "resources/colors.html.twig"
 colors:
+  - color: black
+    html: '#000'
+    description: černá
   - color: red
     html: '#c00'
     description: červená
   - color: green
-    html: '#080'
+    html: '#729fcf'
     description: zelená
-  - color: brown
-    html: '#cc0'
-    description: hnědá
+  - color: yellow
+    html: '#c4a000'
+    description: žlutá
   - color: blue
-    html: '#00c'
+    html: '#729fcf'
     description: modrá
   - color: magenta
-    html: '#c0c'
+    html: '#75507b'
     description: fialová
   - color: cyan
-    html: '#0cc'
+    html: '#06989a'
     description: tyrkysová
   - color: gray
-    html: '#888'
+    html: '#ccc'
     description: šedá
   - color: lightgray
-    html: '#ccc'
+    html: '#ddd'
     description: světle šedá
   - color: lightred
-    html: '#f66'
+    html: '#ef2929'
     description: světle červená
   - color: lightgreen
-    html: '#6f6'
+    html: '#8ae234'
     description: světle zelená
-  - color: yellow
-    html: '#ff6'
-    description: žlutá
+  - color: lightyellow
+    html: '#fce94f'
+    description: světle žlutá
   - color: lightblue
-    html: '#66f'
+    html: '#32afff'
     description: modrá
   - color: lightmagenta
-    html: '#f6f'
+    html: '#ad7fa8'
     description: světle fialová
   - color: lightcyan
-    html: '#6ff'
+    html: '#34e2e2'
     description: světle tyrkysová
   - color: white
     html: '#fff'
     description: bílá
+  - color: default
+    html: '#ddd'
+    description: bez uvedení barvy (výchozí barva)

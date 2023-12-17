@@ -26,6 +26,7 @@ class ApiController extends AbstractController
         "sweets" => ["type" => "multi"],
         "lamps" => ["type" => "multi"],
         "gifts" => ["type" => "gifts"],
+        "scene" => ["type" => "scene"],
     ];
 
     const INVOCATION_TYPES = [
@@ -44,6 +45,9 @@ class ApiController extends AbstractController
             "PUT" => "invokePutGifts",
             "DELETE" => "invokeDeleteGifts",
         ],
+        "scene" => [
+            "DELETE" => "invokeDeleteScene",
+        ],
     ];
 
     const PREPARE_METHODS = [
@@ -56,15 +60,15 @@ class ApiController extends AbstractController
         "black" => 0,
         "red" => 1,
         "green" => 2,
-        "brown" => 3,
+        "yellow" => 3,
         "blue" => 4,
         "magenta" => 5,
         "cyan" => 6,
-        "gray" => 7,
-        "lightgray" => 8,
+        "lightgray" => 7,
+        "gray" => 8,
         "ligthred" => 9,
         "lightgreen" => 10,
-        "yellow" => 11,
+        "lightyellow" => 11,
         "lightblue" => 12,
         "ligthmagenta" => 13,
         "lightcyan" => 14,
@@ -72,6 +76,8 @@ class ApiController extends AbstractController
         "default" => null,
     ];
 
+    #[Route("", name: "api.scene")]
+    #[Route("/", name: "api.scene.alt")]
     #[Route("/star", name: "api.star")]
     #[Route("/chains", name: "api.chain.collection")]
     #[Route("/chains/{fragment}", name: "api.chain.fragment")]
@@ -509,6 +515,16 @@ class ApiController extends AbstractController
         return $this->getSuccessResponse(["success" => true]);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+    private function invokeDeleteScene(array $params, string $method, TreeScene $tree): Response
+    {
+        $tree->setData([]);
+        $this->treeManager->store($tree);
+        return $this->getSuccessResponse(["success" => true]);
+    }
+
     /** @phpstan-ignore-next-line */
     private function colorToApi(int|false|null $color): ?array
     {
@@ -527,6 +543,12 @@ class ApiController extends AbstractController
     {
         if ($color === null) {
             return null;
+        }
+        if (is_int($color)) {
+            if ($color < 0 || $color > 15) {
+                return false;
+            }
+            return $color;
         }
         if (!is_string($color)) {
             return false;

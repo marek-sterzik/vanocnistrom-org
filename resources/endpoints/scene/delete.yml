@@ -1,0 +1,6 @@
+template: "resources/endpoint.html.twig"
+method: DELETE
+route: api.scene
+result: {"success":true}
+description: |
+  Vymaž celou scénu.

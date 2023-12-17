@@ -50,3 +50,6 @@ sections:
       - endpoints/gifts/put-part
       - endpoints/gifts/delete
       - endpoints/gifts/delete-part
+  - heading: "Celá scéna"
+    subsections:
+      - endpoints/scene/delete
