@@ -43,4 +43,4 @@ header div.url {float: right; padding: 1em; font-size: 1.5em;}
 span.color {display: inline-block; width: 1em; height: 1em; border: 1px solid #eee; box-shadow: 1px 1px 3px #ddd;}
 span.color-description {font-family: monospace; font-weight: bold;}
 td.sp {padding-right: 1em;}
-div.api-base {font-family: monospace; font-weight: bold; font-size: 1.5em; text-align: center; margin: 1em 0}
+div.api-base {font-family: monospace; font-weight: bold; font-size: 1.3em; text-align: center; margin: 1em 0}
