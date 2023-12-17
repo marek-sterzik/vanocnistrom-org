@@ -1,0 +1,49 @@
+template: "resources/special.html.twig"
+heading: "Barvy"
+innerTemplate: "resources/colors.html.twig"
+colors:
+  - color: red
+    html: '#c00'
+    description: červená
+  - color: green
+    html: '#080'
+    description: zelená
+  - color: brown
+    html: '#cc0'
+    description: hnědá
+  - color: blue
+    html: '#00c'
+    description: modrá
+  - color: magenta
+    html: '#c0c'
+    description: fialová
+  - color: cyan
+    html: '#0cc'
+    description: tyrkysová
+  - color: gray
+    html: '#888'
+    description: šedá
+  - color: lightgray
+    html: '#ccc'
+    description: světle šedá
+  - color: lightred
+    html: '#f66'
+    description: světle červená
+  - color: lightgreen
+    html: '#6f6'
+    description: světle zelená
+  - color: yellow
+    html: '#ff6'
+    description: žlutá
+  - color: lightblue
+    html: '#66f'
+    description: modrá
+  - color: lightmagenta
+    html: '#f6f'
+    description: světle fialová
+  - color: lightcyan
+    html: '#6ff'
+    description: světle tyrkysová
+  - color: white
+    html: '#fff'
+    description: bílá

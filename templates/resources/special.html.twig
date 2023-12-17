@@ -1,6 +1,11 @@
 <div class="block">
     <h3>{{ heading }}</h3>
     <div>
-        {{ html|raw }}
+        {% if innerTemplate is defined %}
+            {% include innerTemplate %}
+        {% endif %}
+        {% if html is defined %}
+            {{ html|raw }}
+        {% endif %}
     </div>
 </div>

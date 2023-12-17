@@ -4,6 +4,7 @@ sections:
   - heading: "Obecné informace"
     subsections:
       - access
+      - colors
   - heading: "Hvězda"
     subsections:
       - endpoints/star/get

@@ -1,0 +1,10 @@
+Kdekoliv se zadávají barvy, zadávají se pomocí těchto názvů:
+<table>
+    {% for color in colors %}
+        <tr>
+            <td class="sp"><span class="color-description">{{ color.color }}</span></td>
+            <td><span class="color" style="background-color: {{ color.html }}"></span></td>
+            <td>{{ color.description }}</td>
+        </tr>
+    {% endfor %}
+</table>

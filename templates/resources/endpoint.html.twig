@@ -22,6 +22,21 @@
                 </div>
             </div>
         {% endif %}
+        {% if requestDescription is defined and not requestDescription is empty %}
+            <div class="box">
+                <h4>Proměnné požadavku</h3>
+                <div class="boxcontent">
+                    <table>
+                        {% for name, description in requestDescription %}
+                            <tr>
+                                <td><span class="uri"><span class="param">{{ name }}</span></span></td>
+                                <td>- {{ description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        {% endif %}
         {% if request is defined %}
             <div class="box">
                 <h4>Tělo požadavku</h4>
