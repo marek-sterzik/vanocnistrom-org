@@ -521,7 +521,7 @@ class ApiController extends AbstractController
     private function invokeDeleteScene(array $params, string $method, TreeScene $tree): Response
     {
         $tree->setData([]);
-        $this->treeManager->store($tree);
+        $this->treeManager->store($tree, true, true);
         return $this->getSuccessResponse(["success" => true]);
     }
 

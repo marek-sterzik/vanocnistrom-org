@@ -25,7 +25,7 @@ class TreeController extends AbstractController
         $treeUrl = $this->generateUrl('tree', ["tree" => $tree->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
         $treeUrlShow = preg_replace('|https?://|', '', $treeUrl);
         
-        $this->treeManager->store($tree, true);
+        $this->treeManager->store($tree, true, false);
         $this->treeManager->cleanup();
         return $this->render('main.html.twig', [
             "treeUrl" => $treeUrl,
@@ -53,7 +53,7 @@ class TreeController extends AbstractController
         $treeUrl = $this->generateUrl('tree', ["tree" => $tree->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
         $treeUrlShow = preg_replace('|https?://|', '', $treeUrl);
 
-        $this->treeManager->store($tree, true);
+        $this->treeManager->store($tree, true, false);
         $this->treeManager->cleanup();
 
         return $this->render('api.html.twig', [
@@ -88,7 +88,7 @@ class TreeController extends AbstractController
             $this->treeManager->refresh($tree);
         }
         $data = $this->treeManager->getTerminalCode($tree, $cols ?? 80, $rows ?? 25);
-        $this->treeManager->store($tree, true);
+        $this->treeManager->store($tree, true, false);
         $this->treeManager->cleanup();
         return [
             "data" => $data,

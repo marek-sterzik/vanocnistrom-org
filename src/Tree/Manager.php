@@ -37,20 +37,22 @@ class Manager
         $tree->setPassword(null);
         $tree->setRevision(0);
         try {
-            $this->store($tree, true);
+            $this->store($tree, true, true);
         } catch (Exception $e) {
             return null;
         }
         return $tree;
     }
 
-    public function store(TreeScene $tree, bool $shortValidity = false): void
+    public function store(TreeScene $tree, bool $shortValidity = false, bool $updateRevision = true): void
     {
         if ($tree->getRevision() > 1) {
             $shortValidity = false;
         }
         $validPeriod = $shortValidity ? self::INITIAL_VALID_PERIOD : self::VALID_PERIOD;
-        $tree->setRevision($tree->getRevision() + 1);
+        if ($updateRevision) {
+            $tree->setRevision($tree->getRevision() + 1);
+        }
         $tree->updateValidTill((new DateTimeImmutable())->add(new DateInterval($validPeriod)));
         $this->entityManager->persist($tree);
         $this->entityManager->flush();
@@ -76,7 +78,7 @@ class Manager
         $write = $callback($christmasTree);
         if ($write) {
             $tree->setData($christmasTree->dumpState());
-            $this->store($tree, false);
+            $this->store($tree, false, true);
         }
     }
 }
