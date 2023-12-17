@@ -2,6 +2,8 @@ template: "resources/endpoint.html.twig"
 method: DELETE
 route: api.sweets.fragment
 params: {"fragment": "part"}
+paramDescription:
+  part: Pořadové číslo sladkosti.
 result: {"success":true}
 description: |
   Sundej ze stromku jednu sladkost.

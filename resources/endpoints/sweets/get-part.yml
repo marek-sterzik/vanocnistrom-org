@@ -2,6 +2,8 @@ template: "resources/endpoint.html.twig"
 method: GET
 route: api.sweets.fragment
 params: {"fragment": "part"}
+paramDescription:
+  part: Pořadové číslo sladkosti.
 result: {"id":2,"exists":true,"color":"yellow"}
 description: |
   Vrať informace o jedné sladkosti na stromku.

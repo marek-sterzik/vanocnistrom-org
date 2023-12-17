@@ -2,6 +2,8 @@ template: "resources/endpoint.html.twig"
 method: DELETE
 route: api.gifts.fragment
 params: {"fragment": "part"}
+paramDescription:
+  part: Pořadové číslo daru.
 result: {"success":true}
 description: |
   Odstraň jeden dar pod stromkem. (Pozor, id darů se průběžně mění!)

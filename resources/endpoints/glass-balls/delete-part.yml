@@ -2,6 +2,8 @@ template: "resources/endpoint.html.twig"
 method: DELETE
 route: api.glassBalls.fragment
 params: {"fragment": "part"}
+paramDescription:
+  part: Pořadové číslo skleněné koule.
 result: {"success":true}
 description: |
   Sundej ze stromku jednu skleněnou kouli.
