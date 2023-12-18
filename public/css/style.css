@@ -3,7 +3,7 @@ div.body {display: table; width: 100%; height: 100%;}
 div.table-cell {display: table-cell;}
 header, main {display: table-row;}
 main {position: relative; height: 100%; background-color: black; color: #bbb;}
-div.content {background-color: white; max-width: 70em; margin: auto; color: black; padding: .5em 1em; border-radius: .7em; font-family: sans-serif; box-shadow: 10px 10px 10px #444;}
+div.content {background-color: white; max-width: 70em; margin: 0 auto 2em auto; color: black; padding: .5em 1em; border-radius: .7em; font-family: sans-serif; box-shadow: 10px 10px 10px #444;}
 div.content a {color: black;}
 div.content p {text-align: justify;}
 div.center {text-align: center; vertical-align: middle;}
@@ -44,3 +44,11 @@ span.color {display: inline-block; width: 1em; height: 1em; border: 1px solid #e
 span.color-description {font-family: monospace; font-weight: bold;}
 td.sp {padding-right: 1em;}
 div.api-base {font-family: monospace; font-weight: bold; font-size: 1.3em; text-align: center; margin: 1em 0}
+@media (max-width: 500px) {
+    header {font-size: .9em;}
+    h3 {font-size: .9em;}
+}
+@media (max-width: 350px) {
+    header {font-size: .8em;}
+    h3 {font-size: .8em;}
+}
