@@ -13,28 +13,36 @@ class EndpointFormatter
     {
     }
 
-    public function formatEndpoint(string $method, string $routeName, array $params = []): string
-    {
-        $uriFormatted = $routeName;
-
-        if (!isset($params['tree'])) {
-            $params['tree'] = 'tree';
+    public function formatEndpoint(
+        string $method,
+        string $routeName,
+        array $params = [],
+        bool $fillParams = false,
+        array|string|null $queryString = null
+    ): string {
+        if (!$fillParams) {
+            $params = array_map(function ($item) {
+                return sprintf("{%s}", $item);
+            }, $params);
         }
 
         $uri = $this->router->generate(
             $routeName,
-            array_map(function ($item) {
-                return sprintf("{%s}", $item);
-            }, $params)
+            $params
         );
 
         $uri = preg_replace('/\?.*$/', '', $uri);
-        $uri = preg_replace('/%7B/i', '<span class="param">{', $uri);
-        $uri = preg_replace('/%7D/i', '}</span>', $uri);
+        if (!$fillParams) {
+            $uri = preg_replace('/%7B/i', '<span class="param">{', $uri);
+            $uri = preg_replace('/%7D/i', '}</span>', $uri);
+        }
         if (substr($uri, 0, strlen(self::API_PREFIX)) !== self::API_PREFIX) {
             throw new Exception("Invalid endpoint out of API prefix scope");
         }
         $uri = substr($uri, strlen(self::API_PREFIX));
+        if ($queryString !== null) {
+            $uri .= $this->formatQueryString($queryString);
+        }
 
         return sprintf(
             "<span class=\"method-container\"><span class=\"method %s\">%s</span></span> <span class=\"uri\">%s</span>",
@@ -42,6 +50,24 @@ class EndpointFormatter
             htmlspecialchars(strtoupper($method)),
             $uri
         );
+    }
+
+    private function formatQueryString(array|string|null $queryString): string
+    {
+        if ($queryString === null) {
+            return '';
+        }
+        if (is_array($queryString)) {
+            $str = '';
+            foreach ($queryString as $index => $value) {
+                if ($str !== '') {
+                    $str .= "&";
+                }
+                $str .= urlencode($index) . "=" . urlencode($value);
+            }
+            $queryString = $str;
+        }
+        return "?" . $queryString;
     }
 
     public function getEndpointBase(): string

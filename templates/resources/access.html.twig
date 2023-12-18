@@ -19,7 +19,7 @@ Aplikace umoňuje buď standardní HTTP REST API přístup a nebo umožňuje tak
 Například, požadavek:
 {% set tree = tree_id() %}
 <div class="api-base">
-    <span class="method put">PUT</span> <span class="uri">{{ path("api.gifts.collection", {"tree": tree}) }}</span>
+    {{ endpoint("PUT", "api.gifts.collection", {}, true) }}
 </div>
 s tělem
 <div class="box">
@@ -28,5 +28,5 @@ s tělem
 
 jde také realizovat jako:
 <div class="api-base">
-    <span class="method get">GET</span> <span class="uri">{{ path("api.gifts.collection", {"tree": tree}) }}?method=PUT&amp;color=green&amp;label=Jan</span>
+    {{ endpoint("GET", "api.gifts.collection", {}, true, {"method": "POST", "color": "green", "label": "Jan"}) }}
 </div>

@@ -34,9 +34,17 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    public function formatEndpoint(string $method, string $routeName, array $params = []): string
-    {
-        return $this->endpointFormatter->formatEndpoint($method, $routeName, $params);
+    public function formatEndpoint(
+        string $method,
+        string $routeName,
+        array $params = [],
+        bool $fillParams = false,
+        array|string|null $queryString = null
+    ): string {
+        if (!isset($params['tree'])) {
+            $params['tree'] = $fillParams ? $this->getTreeId() : 'tree';
+        }
+        return $this->endpointFormatter->formatEndpoint($method, $routeName, $params, $fillParams, $queryString);
     }
 
     public function getEndpointBase(): string
