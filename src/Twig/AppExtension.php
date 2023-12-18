@@ -28,6 +28,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('endpoint', [$this, 'formatEndpoint'], ['is_safe' => ['all']]),
+            new TwigFunction('endpoint_base', [$this, 'getEndpointBase']),
             new TwigFunction('load_resource', [$this, 'loadResource']),
             new TwigFunction('tree_id', [$this, 'getTreeId']),
         ];
@@ -36,6 +37,11 @@ class AppExtension extends AbstractExtension
     public function formatEndpoint(string $method, string $routeName, array $params = []): string
     {
         return $this->endpointFormatter->formatEndpoint($method, $routeName, $params);
+    }
+
+    public function getEndpointBase(): string
+    {
+        return $this->endpointFormatter->getEndpointBase();
     }
 
     public function loadResource(string $resource): array

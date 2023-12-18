@@ -6,7 +6,7 @@ Identifikátor se zobrazuje v pravém horním rohu scény. Ten je potom potřeba
 Základní URL:
 </p>
 <div class="api-base">
-    <a href="{{ url('main') }}">{{ url('main') }}</a>
+    <a href="{{ endpoint_base() }}">{{ endpoint_base() }}</a>
 </div>
 Aplikace umoňuje buď standardní HTTP REST API přístup a nebo umožňuje také přístup, kde jsou všechny metody realizovány pouze skrze metodu GET. Tento přístup je užitečný pro testování, popřípadě pro možnost přímé manuální realizace příkazu skrze prohlížeč. Pro tento režim platí, že všechny parametry je potřeba předat skrze query string (tj. get parametry v url) Ke spuštění v tomto režimu je potřeba splnit tyto podmínky:
 
