@@ -23,6 +23,12 @@ class Manager
     ) {
     }
 
+    public function getTreeById(string $id): ?TreeScene
+    {
+        $id = $this->codeGenerator->canonizeCode($id);
+        return $this->treeSceneRepository->find($id);
+    }
+
     public function cleanup(): void
     {
         $this->treeSceneRepository->cleanup();

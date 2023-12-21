@@ -119,7 +119,10 @@ class ApiController extends AbstractController
         }
 
         if ($tree === null) {
-            return $this->getErrorResponse(404, "Christmas tree not found");
+            $tree = $this->findProperTree();
+            if ($tree === null) {
+                return $this->getErrorResponse(404, "Christmas tree not found");
+            }
         }
 
         return $this->invoke($params, $tree);
