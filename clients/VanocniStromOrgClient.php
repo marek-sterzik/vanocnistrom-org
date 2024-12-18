@@ -8,7 +8,7 @@ class VanocniStromOrgClient
     {
     }
 
-    public function makeRequest(string $method, string $path, ?array $data = null): array
+    private function makeRequest(string $method, string $path, ?array $data = null): array
     {
         $url = rtrim($this->apiUrl, '/') . '/' . $this->code . '/' . ltrim($path, '/');
 
