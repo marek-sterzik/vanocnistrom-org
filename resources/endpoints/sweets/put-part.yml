@@ -3,10 +3,14 @@ method: PUT
 route: api.sweets.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo sladkosti.
+  part: pořadové číslo sladkosti
+  part@en: part nubmer of the sweet
 result: {"success":true}
 request: {"color":"green"}
 requestDescription:
-  color: Barva sladkosti
+  color: barva sladkosti
+  color@en: color of the sweet
 description: |
   Ozdob stromek sladkostí (jednu).
+description@en: |
+  Decorate the tree with one single sweet.

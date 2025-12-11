@@ -11,5 +11,7 @@ result:
   - {"id":6,"exists":true,"color":"blue"}
   - {"id":7,"exists":false}
 description: |
-  Vrať informace o skleněných koulích na stromku.
+  Vrať informace o všech skleněných koulích na stromku.
+description@en: |
+  Return information about all glass balls on the tree.
 

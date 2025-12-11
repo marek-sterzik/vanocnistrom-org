@@ -3,7 +3,10 @@ method: DELETE
 route: api.gifts.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo daru.
+  part: pořadové číslo daru
+  part@en: part number of the gift
 result: {"success":true}
 description: |
   Odstraň jeden dar pod stromkem. (Pozor, id darů se průběžně mění!)
+description@en: |
+  Remove one gift under the tree. (Be careful, the id of gitfts is changing continuously!)

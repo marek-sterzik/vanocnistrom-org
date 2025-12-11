@@ -3,10 +3,14 @@ method: PUT
 route: api.lamps.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo páru svíček.
+  part: pořadové číslo páru svíček
+  part@en: part number of the lamp pair
 result: {"success":true}
 request: {"color":"green"}
 requestDescription:
-  color: Barva svíček
+  color: barva svíček
+  color@en: lamp color
 description: |
   Ozdob stromek jedním párem svíček.
+description@en: |
+  Decorate the tree with one single lamp pair.

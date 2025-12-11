@@ -2,7 +2,7 @@
 {% for section in sections %}
     <h{{ headingLevel }}>{{ section.heading }}</h{{ headingLevel }}>
     {% for subsection in section.subsections %}
-        {{ resourceLoader.load(subsection) }}
+        {{ resourceLoader.load(subsection, selectedLanguage) }}
     {% endfor %}
 
 {% endfor %}

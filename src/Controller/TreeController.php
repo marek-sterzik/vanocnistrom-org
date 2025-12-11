@@ -13,6 +13,10 @@ use App\Entity\TreeScene;
 class TreeController extends AbstractController
 {
     public const MAX_TRIES = 30;
+    const DOC_LANGUAGES = [
+        "en" => ["en"],
+        "cz" => ["cs"],
+    ];
 
     #[Route("", name: "tree")]
     #[Route("/", name: "tree.secondary")]
@@ -45,12 +49,28 @@ class TreeController extends AbstractController
     }
 
     #[Route("/api", name: "tree.api")]
-    public function showApi(?TreeScene $tree): Response
+    public function showApi(?TreeScene $tree, Request $request): Response
     {
         $response = $this->checkTree($tree);
         if ($response !== null) {
             return $response;
         }
+
+        $lang = $request->query->get("lang");
+
+        if (!is_string($lang) || !isset(self::DOC_LANGUAGES[$lang])) {
+            $lang = $this->detectLanguage($request);
+            return $this->redirectToRoute("tree.api", ["tree" => $tree->getId(), "lang" => $lang]);
+        }
+
+        $languages = array_map(
+            fn ($l) => [
+                "code" => $l,
+                "selected" => ($l === $lang),
+                "url" => $this->generateUrl('tree.api', ["tree" => $tree->getId(), "lang" => $l])
+            ],
+            array_keys(self::DOC_LANGUAGES)
+        );
 
         $treeUrl = $this->generateUrl('tree', ["tree" => $tree->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
         $treeUrlShow = preg_replace('|https?://|', '', $treeUrl);
@@ -59,10 +79,30 @@ class TreeController extends AbstractController
         $this->treeManager->cleanup();
 
         return $this->render('api.html.twig', [
+            "selectedLanguage" => $lang,
+            "languages" => $languages,
             "treeUrl" => $treeUrl,
             "treeUrlShow" => $treeUrlShow,
             "tree" => $tree->getId(),
         ]);
+    }
+
+    private function detectLanguage(Request $request): string
+    {
+        $acceptedLanguages = $request->headers->get("Accept-Language");
+        $acceptedLanguages = is_string($acceptedLanguages) ? explode(",", $acceptedLanguages) : [];
+        $acceptedLanguages = array_map(fn ($l) => trim(preg_replace('/;.*$/', '', $l)), $acceptedLanguages);
+        $acceptedLanguages = array_map(fn ($l) => preg_replace('/[_\\-].*$/', '', $l), $acceptedLanguages);
+        foreach ($acceptedLanguages as $acceptedLanguage) {
+            foreach (self::DOC_LANGUAGES as $lang => $detect) {
+                foreach ($detect as $detectLang) {
+                    if ($detectLang === $acceptedLanguage) {
+                        return $lang;
+                    }
+                }
+            }
+        }
+        return array_key_first(self::DOC_LANGUAGES);
     }
 
     #[Route("/data", name: "tree.data")]

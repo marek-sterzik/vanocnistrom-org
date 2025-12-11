@@ -3,7 +3,10 @@ method: DELETE
 route: api.lamps.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo páru svíček.
+  part: pořadové číslo páru svíček
+  part@en: part number of the lamp pair
 result: {"success":true}
 description: |
   Sundej ze stromku jeden pár svíček.
+description@en: |
+  Remove one lamp pair from the tree.

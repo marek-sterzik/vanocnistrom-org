@@ -9,4 +9,5 @@ result:
   - {"id":4,"packageColor":"white","labelColor":"red","label":"Anett"}
 description: |
     Vrať informace o darech pod stromkem. (Pozor, id darů se průběžně mění!)
-
+description@en: |
+    Return information about all gifts under the tree. (Be careful, the id of gitfts is changing continuously!)

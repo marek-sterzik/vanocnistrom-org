@@ -2,15 +2,18 @@ template: "resources/section.html.twig"
 headingLevel: 2
 sections:
   - heading: "Obecné informace"
+    heading@en: "General information"
     subsections:
       - access
       - colors
   - heading: "Hvězda"
+    heading@en: "Star"
     subsections:
       - endpoints/star/get
       - endpoints/star/put
       - endpoints/star/delete
   - heading: "Řetězy"
+    heading@en: "Chains"
     subsections:
       - endpoints/chains/get
       - endpoints/chains/get-part
@@ -19,6 +22,7 @@ sections:
       - endpoints/chains/delete
       - endpoints/chains/delete-part
   - heading: "Skleněné koule"
+    heading@en: "Glass balls"
     subsections:
       - endpoints/glass-balls/get
       - endpoints/glass-balls/get-part
@@ -27,6 +31,7 @@ sections:
       - endpoints/glass-balls/delete
       - endpoints/glass-balls/delete-part
   - heading: "Sladkosti"
+    heading@en: "Sweets"
     subsections:
       - endpoints/sweets/get
       - endpoints/sweets/get-part
@@ -35,6 +40,7 @@ sections:
       - endpoints/sweets/delete
       - endpoints/sweets/delete-part
   - heading: "Svíčky (světla)"
+    heading@en: "Lamps"
     subsections:
       - endpoints/lamps/get
       - endpoints/lamps/get-part
@@ -43,6 +49,7 @@ sections:
       - endpoints/lamps/delete
       - endpoints/lamps/delete-part
   - heading: "Dary"
+    heading@en: "Gifts"
     subsections:
       - endpoints/gifts/get
       - endpoints/gifts/get-part
@@ -51,5 +58,6 @@ sections:
       - endpoints/gifts/delete
       - endpoints/gifts/delete-part
   - heading: "Celá scéna"
+    heading@en: "Whole scene"
     subsections:
       - endpoints/scene/delete

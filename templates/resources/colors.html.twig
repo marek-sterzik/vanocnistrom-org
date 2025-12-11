@@ -1,8 +1,16 @@
-Kdekoliv se zadávají barvy, je možné barvy udávat dvěma způsoby:
-<ol>
-    <li>celým číslem v rozsahu 0 – 15</li>
-    <li>názvem pomocí následující tabulky</li>
-</ol>
+{% if selectedLanguage == 'en' %}
+    Anywhere where colors are used, colors may be given in this forms:
+    <ol>
+        <li>as an integer in the range 0 – 15</li>
+        <li>as a name according to the next table</li>
+    </ol>
+{% else %}
+    Kdekoliv se zadávají barvy, je možné barvy udávat dvěma způsoby:
+    <ol>
+        <li>celým číslem v rozsahu 0 – 15</li>
+        <li>názvem pomocí následující tabulky</li>
+    </ol>
+{% endif %}
 <div class="box">
         <h4>Barvy</h3>
     <div class="boxcontent">

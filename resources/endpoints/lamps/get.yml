@@ -10,4 +10,5 @@ result:
   - {"id":5,"exists":false}
 description: |
   Vrať informace o svíčkách na stromku.
-
+description@en: |
+  Return information about all lamps on the tree.

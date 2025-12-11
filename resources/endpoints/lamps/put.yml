@@ -4,6 +4,9 @@ route: api.lamps.collection
 result: {"success":true}
 request: {"color":"green"}
 requestDescription:
-  color: Barva svíček
+  color: barva svíček
+  color@en: lamp color
 description: |
-  Ozdob stromek svíčkami.
+  Ozdob stromek svíčkami (všemi svíčkami najednou).
+description@en: |
+  Decorate the tree with lamps (all lamps at once).

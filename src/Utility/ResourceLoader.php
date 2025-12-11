@@ -24,7 +24,7 @@ class ResourceLoader
     {
     }
 
-    public function loadResource(string $path, ?string $dirResource = null): array
+    public function loadResource(string $path, ?string $dirResource = null, ?string $lang = null): array
     {
         $path = $this->parsePath($path);
         list($type, $fullPath) = $this->identifyFile($path);
@@ -43,7 +43,34 @@ class ResourceLoader
             throw new Exception(sprintf("Resource '%s' not found", $path));
         }
 
-        return $this->loadFile($fullPath, $type);
+        return $this->processLang($this->loadFile($fullPath, $type), $lang);
+    }
+
+    private function processLang(array $data, ?string $lang): array
+    {
+        foreach (array_keys($data) as $key) {
+            $parsed = $this->parseLangKey($key);
+            if ($parsed !== null) {
+                if ($parsed['lang'] === $lang) {
+                    $data[$parsed['key']] = $data[$key];
+                }
+                unset($data[$key]);
+            }
+        }
+        foreach ($data as &$value) {
+            if (is_array($value)) {
+                $value = $this->processLang($value, $lang);
+            }
+        }
+        return $data;
+    }
+
+    private function parseLangKey(string $key): ?array
+    {
+        if (preg_match('/^(.*)@([a-z]{2})$/', $key, $matches)) {
+            return ["lang" => $matches[2], "key" => $matches[1]];
+        }
+        return null;
     }
 
     private function loadFile(string $fullPath, string $type): array

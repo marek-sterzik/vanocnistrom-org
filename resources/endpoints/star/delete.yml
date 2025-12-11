@@ -4,3 +4,5 @@ route: api.star
 result: {"success":true}
 description: |
   Sundej ze stromku hvězdu.
+description@en: |
+  Remove the star from the tree.

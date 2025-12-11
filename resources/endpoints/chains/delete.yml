@@ -4,3 +4,5 @@ route: api.chain.collection
 result: {"success":true}
 description: |
   Sundej ze stromku celý řetěz.
+description@en: |
+  Remove the whole chain from the tree.

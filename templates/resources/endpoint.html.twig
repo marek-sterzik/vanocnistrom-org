@@ -1,6 +1,6 @@
 {% if not params is defined %}{% set params = {} %}{% endif %}
 {% if not paramDescription is defined %}{% set paramDescription = {} %}{% endif %}
-{% set paramDescription = {"tree":"id vánočního stromku"}|merge(paramDescription) %}
+{% set paramDescription = {"tree": (selectedLanguage == "en" ? "id of the christmass tree" : "id vánočního stromku")}|merge(paramDescription) %}
 <div class="block">
     <h3>{{ endpoint(method, route, params) }}</h3>
     <div>
@@ -9,7 +9,7 @@
         </p>
         {% if paramDescription is defined and not paramDescription is empty %}
             <div class="box">
-                <h4>Parametry</h3>
+                <h4>{% if selectedLanguage == "en" %}Parameters{% else %}Parametry{% endif %}</h3>
                 <div class="boxcontent">
                     <table>
                         {% for name, description in paramDescription %}
@@ -24,7 +24,7 @@
         {% endif %}
         {% if requestDescription is defined and not requestDescription is empty %}
             <div class="box">
-                <h4>Proměnné požadavku</h3>
+                <h4>{% if selectedLanguage == "en" %}Request variables{% else %}Proměnné požadavku{% endif %}</h3>
                 <div class="boxcontent">
                     <table>
                         {% for name, description in requestDescription %}
@@ -39,13 +39,13 @@
         {% endif %}
         {% if request is defined %}
             <div class="box">
-                <h4>Tělo požadavku</h4>
+                <h4>{% if selectedLanguage == "en" %}Request body{% else %}Tělo požadavku{% endif %}</h3>
                 <pre class="hl">{{ request|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
             </div>
         {% endif %}
         {% if result is defined %}
             <div class="box">
-                <h4>Tělo odpovědi</h4>
+                <h4>{% if selectedLanguage == "en" %}Response body{% else %}Tělo odpovědi{% endif %}</h3>
                 <pre class="hl">{{ result|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
             </div>
         {% endif %}

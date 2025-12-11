@@ -4,4 +4,6 @@ route: api.star
 result: {"exists":true,"color":"red"}
 description: |
   Vrať informace o hvězdě na stromku.
+description@en: |
+  Return information about the star on the tree.
 

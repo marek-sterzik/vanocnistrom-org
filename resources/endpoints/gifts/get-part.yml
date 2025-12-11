@@ -3,9 +3,10 @@ method: GET
 route: api.gifts.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo daru.
+  part: pořadové číslo daru
+  part@en: part number of the gift
 result: {"id":0,"packageColor":"red","labelColor":"red","label":"George"}
 description: |
   Vrať informace o jednom daru. (Pozor, id darů se průběžně mění!)
-
-
+description@en: |
+  Return information about one single gift. (Be careful, the id of gitfts is changing continuously!)

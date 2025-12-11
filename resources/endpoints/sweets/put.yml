@@ -4,6 +4,9 @@ route: api.sweets.collection
 result: {"success":true}
 request: {"color":"green"}
 requestDescription:
-  color: Barva sladkosti
+  color: barva sladkosti
+  color@en: color of the sweet
 description: |
   Ozdob stromek sladkostmi (všechny sladkosti).
+description@en: |
+  Decorate the tree with sweets (all sweets at once).

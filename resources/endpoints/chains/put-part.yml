@@ -3,10 +3,14 @@ method: PUT
 route: api.chain.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo části řetězu.
+  part: pořadové číslo části řetězu
+  part@en: part number of the chain part
 result: {"success":true}
 request: {"color":"green"}
 requestDescription:
-  color: Barva řetězu
+  color: barva řetězu
+  color@en: color of the chain
 description: |
   Ozdob stromek řetězem (jednu konkrétní část řetězu).
+description@en: |
+  Decorate the tree with a chain (one single chain part).

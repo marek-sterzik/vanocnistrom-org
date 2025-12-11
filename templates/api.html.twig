@@ -14,8 +14,18 @@
         <main>
             <h1>API</h1>
             <div class="content">
+                <div class="language-switch">
+                    {% for lang in languages %}
+                        {% if not loop.first %}/{% endif %}
+                        {% if lang.selected %}
+                            <span class="selected">{{ lang.code }}</span>
+                        {% else %}
+                            <a href="{{ lang.url }}">{{ lang.code }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
                 {% import "resource_loader.html.twig" as resourceLoader %}
-                {{ resourceLoader.load("api") }}
+                {{ resourceLoader.load("api", selectedLanguage) }}
             </div>
         </main>
     </div>

@@ -4,3 +4,5 @@ route: api.glassBalls.collection
 result: {"success":true}
 description: |
   Sundej ze stromku všechny skleněné koule.
+description@en: |
+  Remove all glass balls from the tree.

@@ -6,6 +6,8 @@ main {position: relative; height: 100%; background-color: black; color: #bbb;}
 div.content {background-color: white; max-width: 70em; margin: 0 auto 2em auto; color: black; padding: .5em 1em; border-radius: .7em; font-family: sans-serif; box-shadow: 10px 10px 10px #444;}
 div.content a {color: black;}
 div.content p {text-align: justify;}
+div.language-switch {text-align: right; font-size: 1.5em;}
+div.language-switch .selected {font-weight: bold;}
 div.center {text-align: center; vertical-align: middle;}
 main h1, main h2 {text-align: center;}
 main h1 {color: white;}

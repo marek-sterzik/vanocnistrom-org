@@ -3,7 +3,10 @@ method: DELETE
 route: api.sweets.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo sladkosti.
+  part: pořadové číslo sladkosti
+  part@en: part nubmer of the sweet
 result: {"success":true}
 description: |
   Sundej ze stromku jednu sladkost.
+description@en: |
+  Remove one sweet from the tree.

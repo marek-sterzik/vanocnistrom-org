@@ -4,6 +4,9 @@ route: api.glassBalls.collection
 result: {"success":true}
 request: {"color":"green"}
 requestDescription:
-  color: Barva skleněné koule
+  color: barva skleněné koule
+  color@en: color of the glass ball
 description: |
   Ozdob stromek skleněnými koulemi (všechny koule).
+description@en: |
+  Decorate the tree with glass balls (all glass balls at once).

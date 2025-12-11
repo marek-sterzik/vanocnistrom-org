@@ -1,4 +1,4 @@
-{% macro load(name) %}
-    {% set resource = load_resource(name) %}
-    {% include resource.template with resource %}
+{% macro load(name, lang) %}
+    {% set resource = load_resource(name, lang) %}
+    {% include resource.template with resource|merge({"selectedLanguage": lang}) %}
 {% endmacro %}

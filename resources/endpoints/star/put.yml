@@ -4,6 +4,9 @@ route: api.star
 result: {"success":true}
 request: {"color":"blue"}
 requestDescription:
-  color: Barva hvězdy
+  color: barva hvězdy
+  color@en: color of the star
 description: |
   Ozdob stromek hvězdou.
+description@en: |
+  Decorate the tree with a star.

@@ -52,9 +52,9 @@ class AppExtension extends AbstractExtension
         return $this->endpointFormatter->getEndpointBase();
     }
 
-    public function loadResource(string $resource): array
+    public function loadResource(string $resource, string $language): array
     {
-        return $this->resourceLoader->loadResource($resource);
+        return $this->resourceLoader->loadResource($resource, null, $language);
     }
 
     public function getTreeId(): ?string

@@ -3,9 +3,12 @@ method: GET
 route: api.chain.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo části řetězu.
+  part: pořadové číslo části řetězu
+  part@en: part number of the chain part
 result: {"id":2,"exists":true,"color":"yellow"}
 description: |
   Vrať informace o části řetězu na stromku.
+description@en: |
+  Return information about the chain part on the tree.
 
 

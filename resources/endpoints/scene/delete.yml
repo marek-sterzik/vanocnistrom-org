@@ -4,3 +4,5 @@ route: api.scene
 result: {"success":true}
 description: |
   Vymaž celou scénu.
+description@en: |
+  Wipe the whole scene.

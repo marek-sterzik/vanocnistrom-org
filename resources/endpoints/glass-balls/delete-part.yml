@@ -3,7 +3,10 @@ method: DELETE
 route: api.glassBalls.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo skleněné koule.
+  part: pořadové číslo skleněné koule
+  part@en: glass ball part number
 result: {"success":true}
 description: |
   Sundej ze stromku jednu skleněnou kouli.
+description@en: |
+  Remove one glass ball from the tree.

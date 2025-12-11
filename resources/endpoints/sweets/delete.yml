@@ -4,3 +4,5 @@ route: api.sweets.collection
 result: {"success":true}
 description: |
   Sundej ze stromku všechny sladkosti.
+description@en: |
+  Remove all sweets from the tree.

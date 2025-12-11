@@ -4,8 +4,13 @@ route: api.gifts.collection
 result: {"success":true}
 request: {"color":"green", "labelColor": "blue", "label": "Jan"}
 requestDescription:
-  color: Barva dárku
-  labelColor: Barva popisku na dárku
-  label: Popisek na dárku
+  color: barva dárku
+  labelColor: barva popisku na dárku
+  label: popisek na dárku
+  color@en: color of the gift
+  labelColor@en: color of the label on the gift
+  label@en: label on the gift
 description: |
   Polož dar pod stromek. (Pozor, id darů se průběžně mění!)
+description@en: |
+  Lay one gift under the tree. (Be careful, the id of gitfts is changing continuously!)

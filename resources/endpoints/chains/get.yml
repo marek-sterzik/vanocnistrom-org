@@ -10,5 +10,7 @@ result:
   - {"id":5,"exists":true,"color":"red"}
   - {"id":6,"exists":false}
 description: |
-  Vrať informace o řetězu na stromku.
+  Vrať informace o celém řetězu na stromku.
+description@en: |
+  Return information about the whole chain on the tree.
 

@@ -4,11 +4,17 @@ route: api.gifts.fragment
 params: {"fragment": "part"}
 result: {"success":true}
 paramDescription:
-  part: Pořadové číslo daru.
+  part: pořadové číslo daru
+  part@en: part number of the gift
 request: {"color": "green", "labelColor": "blue", "label": "Jan"}
 requestDescription:
-  color: Barva dárku
-  labelColor: Barva popisku na dárku
-  label: Popisek na dárku
+  color: barva dárku
+  labelColor: barva popisku na dárku
+  label: popisek na dárku
+  color@en: color of the gift
+  labelColor@en: color of the label on the gift
+  label@en: label on the gift
 description: |
   Polož dar pod stromek na konkrétní pozici, vyměň dar. (Pozor, id darů se průběžně mění!)
+description@en: |
+  Lay one gift under the tree at a given position. (Be careful, the id of gitfts is changing continuously!)

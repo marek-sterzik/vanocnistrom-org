@@ -11,5 +11,6 @@ result:
   - {"id":6,"exists":true,"color":"blue"}
   - {"id":7,"exists":false}
 description: |
-  Vrať informace o sladkostech na stromku.
-
+  Vrať informace o všech sladkostech na stromku.
+description@en: |
+  Return information about all sweets on the tree.

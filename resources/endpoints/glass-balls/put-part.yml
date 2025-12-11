@@ -3,10 +3,14 @@ method: PUT
 route: api.glassBalls.fragment
 params: {"fragment": "part"}
 paramDescription:
-  part: Pořadové číslo skleněné koule.
+  part: pořadové číslo skleněné koule
+  part@en: glass ball part number
 result: {"success":true}
 request: {"color":"green"}
 requestDescription:
-  color: Barva skleněné koule
+  color: barva skleněné koule
+  color@en: color of the glass ball
 description: |
   Ozdob stromek skleněnou koulí (jednu).
+description@en: |
+  Decorate the tree with one single glass ball.

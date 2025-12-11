@@ -4,6 +4,9 @@ route: api.chain.collection
 result: {"success":true}
 request: {"color":"green"}
 requestDescription:
-  color: Barva řetězu
+  color: barva řetězu
+  color@en: color of the chain
 description: |
   Ozdob stromek řetězem (všechny části řetězu najednou).
+description@en: |
+  Decorate the tree with a chain (all chain parts at once).

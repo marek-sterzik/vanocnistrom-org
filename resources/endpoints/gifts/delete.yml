@@ -4,3 +4,5 @@ route: api.gifts.collection
 result: {"success":true}
 description: |
   Odstraň všechny dary pod stromkem.
+description@en: |
+  Remove all gifts under the tree.

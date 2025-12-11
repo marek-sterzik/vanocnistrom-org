@@ -1,3 +1,4 @@
 template: "resources/special.html.twig"
 heading: "Přístup k API"
+heading@en: "API access"
 innerTemplate: "resources/access.html.twig"
