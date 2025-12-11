@@ -18,7 +18,8 @@ class EndpointFormatter
         string $routeName,
         array $params = [],
         bool $fillParams = false,
-        array|string|null $queryString = null
+        array|string|null $queryString = null,
+        bool $fullUrl = false
     ): string {
         if (!$fillParams) {
             $params = array_map(function ($item) {
@@ -42,6 +43,10 @@ class EndpointFormatter
         $uri = substr($uri, strlen(self::API_PREFIX));
         if ($queryString !== null) {
             $uri .= $this->formatQueryString($queryString);
+        }
+
+        if ($fullUrl) {
+            $uri = rtrim($this->getEndpointBase(), "/") . $uri;
         }
 
         return sprintf(

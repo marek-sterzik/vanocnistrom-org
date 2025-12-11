@@ -1,19 +1,21 @@
 {% if selectedLanguage == "en" %}
     <p>
-    This API allows to decorate a christmass tree. Each christmass tree has its unique identifier.
-    The identifier is displayed in the top right corner of the screen. This identifier is necessary
-    to know to invoke any API request. 
-        </p>
+        This API allows to decorate a christmass tree. Each christmass tree has its unique identifier.
+        The identifier is displayed in the top right corner of the screen. This identifier is necessary
+        to know to invoke any API request. 
+    </p>
     <p>
-    Base URL:
+        Base URL:
     </p>
     <div class="api-base">
         <a href="{{ endpoint_base() }}">{{ endpoint_base() }}</a>
     </div>
-    The application allows either standard HTTP REST API access or also access where all requests are realized using the GET method.
-    This second approach is useful for testing, r just for the purposes of manually triggering the request in a browser.
-    In this case, all parameters needs to be passed using the query string (i.e. get parameters in the url).
-    To invoke an endpoint in this special mode, these conditions needs to be met:
+    <p>
+        The application allows either standard HTTP REST API access or also access where all requests are realized using the GET method.
+        This second approach is useful for testing, r just for the purposes of manually triggering the request in a browser.
+        In this case, all parameters needs to be passed using the query string (i.e. get parameters in the url).
+        To invoke an endpoint in this special mode, these conditions needs to be met:
+    </p>
 
     <ul>
         <li>only method <span class="method get">GET</span></li>
@@ -21,54 +23,71 @@
         <li>if there is a request body, all parameters from the request body are encoded in the query string</li>
     </ul>
 
-    For example, this request:
-    {% set tree = tree_id() %}
-    <div class="api-base">
-        {{ endpoint("PUT", "api.gifts.collection", {}, true) }}
-    </div>
-    with the body:
-    <div class="box">
-        <pre class="hl">{{ {"color": "green", "label": "Jan"}|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
-    </div>
-
-    may be also invoked as:
-    <div class="api-base">
-        {{ endpoint("GET", "api.gifts.collection", {}, true, {"method": "PUT", "color": "green", "label": "Jan"}) }}
-    </div>
-{% else %}
     <p>
-    Toto API umžňuje zdobit vánoční strom. Každý vánoční strom má svůj identifikátor, který jej jednoznačně identifikuje.
-    Identifikátor se zobrazuje v pravém horním rohu scény. Ten je potom potřeba pro vykonávání všech api dotazů.
+        For example, this request:
+        {% set tree = tree_id() %}
+        <div class="api-base">
+            {{ endpoint("PUT", "api.gifts.collection", {}, true) }}
+        </div>
+        with the body:
+        <div class="box">
+            <pre class="hl">{{ {"color": "green", "label": "Jan"}|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+        </div>
+
+        may be also invoked as:
+        <div class="api-base">
+            {{ endpoint("GET", "api.gifts.collection", {}, true, {"method": "PUT", "color": "green", "label": "Jan"}) }}
+        </div>
     </p>
     <p>
-    Základní URL:
+        The full url for this example would therefore be:
+        <div class="api-base">
+            {{ endpoint("GET", "api.gifts.collection", {}, true, {"method": "PUT", "color": "green", "label": "Jan"}, true) }}
+        </div>
+    </p>
+{% else %}
+    <p>
+        Toto API umžňuje zdobit vánoční strom. Každý vánoční strom má svůj identifikátor, který jej jednoznačně identifikuje.
+        Identifikátor se zobrazuje v pravém horním rohu scény. Ten je potom potřeba pro vykonávání všech api dotazů.
+    </p>
+    <p>
+        Základní URL:
     </p>
     <div class="api-base">
         <a href="{{ endpoint_base() }}">{{ endpoint_base() }}</a>
     </div>
-    Aplikace umoňuje buď standardní HTTP REST API přístup a nebo umožňuje také přístup, kde jsou všechny metody realizovány
-    pouze skrze metodu GET. Tento přístup je užitečný pro testování, popřípadě pro možnost přímé manuální realizace příkazu
-    skrze prohlížeč. Pro tento režim platí, že všechny parametry je potřeba předat skrze query string (tj. get parametry v url).
-    Ke spuštění v tomto režimu je potřeba splnit tyto podmínky:
+    <p>
+        Aplikace umoňuje buď standardní HTTP REST API přístup a nebo umožňuje také přístup, kde jsou všechny metody realizovány
+        pouze skrze metodu GET. Tento přístup je užitečný pro testování, popřípadě pro možnost přímé manuální realizace příkazu
+        skrze prohlížeč. Pro tento režim platí, že všechny parametry je potřeba předat skrze query string (tj. get parametry v url).
+        Ke spuštění v tomto režimu je potřeba splnit tyto podmínky:
+    </p>
 
     <ul>
         <li>pouze metoda <span class="method get">GET</span></li>
         <li>parametr <span class="param">method</span> obsahuje reálnou metodu</li>
         <li>pokud má mít požadavek tělo, všechny parametry těla jsou předány jako query string</li>
     </ul>
+    <p>
+        Například, požadavek:
+        {% set tree = tree_id() %}
+        <div class="api-base">
+            {{ endpoint("PUT", "api.gifts.collection", {}, true) }}
+        </div>
+        s tělem
+        <div class="box">
+            <pre class="hl">{{ {"color": "green", "label": "Jan"}|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+        </div>
 
-    Například, požadavek:
-    {% set tree = tree_id() %}
-    <div class="api-base">
-        {{ endpoint("PUT", "api.gifts.collection", {}, true) }}
-    </div>
-    s tělem
-    <div class="box">
-        <pre class="hl">{{ {"color": "green", "label": "Jan"}|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
-    </div>
-
-    jde také realizovat jako:
-    <div class="api-base">
-        {{ endpoint("GET", "api.gifts.collection", {}, true, {"method": "PUT", "color": "green", "label": "Jan"}) }}
-    </div>
+        jde také realizovat jako:
+        <div class="api-base">
+            {{ endpoint("GET", "api.gifts.collection", {}, true, {"method": "PUT", "color": "green", "label": "Jan"}) }}
+        </div>
+    </p>
+    <p>
+        Plné url k tomuto příkladu tedy bude:
+        <div class="api-base">
+            {{ endpoint("GET", "api.gifts.collection", {}, true, {"method": "PUT", "color": "green", "label": "Jan"}, true) }}
+        </div>
+    </p>
 {% endif %}

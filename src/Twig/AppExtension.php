@@ -39,12 +39,13 @@ class AppExtension extends AbstractExtension
         string $routeName,
         array $params = [],
         bool $fillParams = false,
-        array|string|null $queryString = null
+        array|string|null $queryString = null,
+        bool $fullUrl = false
     ): string {
         if (!isset($params['tree'])) {
             $params['tree'] = $fillParams ? $this->getTreeId() : 'tree';
         }
-        return $this->endpointFormatter->formatEndpoint($method, $routeName, $params, $fillParams, $queryString);
+        return $this->endpointFormatter->formatEndpoint($method, $routeName, $params, $fillParams, $queryString, $fullUrl);
     }
 
     public function getEndpointBase(): string
