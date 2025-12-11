@@ -17,9 +17,7 @@ class AdminerController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/adminer", name="app.adminer")
-     */
+    #[Route("/adminer", name: "app.adminer")]
     public function pageAdminer(): Response
     {
         if (!$this->adminerEnabled) {
@@ -28,6 +26,7 @@ class AdminerController extends AbstractController
 
         return new StreamedResponse(
             function () {
+                $httpAuth = null;
                 $dbConf = $this->databaseUrl;
                 include $this->adminerBootFile;
             }

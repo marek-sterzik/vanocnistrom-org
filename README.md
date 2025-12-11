@@ -13,12 +13,10 @@ Podrobnosti o použití vývojového prostředí najdete na [stránkách platfor
 
 ## Rychlý start
 
-Pro rychlé spuštění vývojového prostředí (po nainstalování závislostí, zejména systému `docker`), spusťte tuto sekvenci příkazů:
+Pro rychlý start systému spusťte příkaz:
 
 ```
-bin/docker configure
-bin/docker up
-bin/docker initialize
+bin/docker start
 ```
 
 **Aplikaci přitom spouštíme jako obyčejný uživatel, nikdy jako root!**
@@ -30,8 +28,8 @@ k dispozici na adrese:
 http://localhost
 ```
 
-Pokud jste zadali jiné číslo portu, bude aplikace dostupná na adrese:
+Pokud jste zadali jiné číslo portu, např. `8080`, bude aplikace dostupná na adrese:
 
 ```
-http://localhost:<port>
+http://localhost:8080
 ```
