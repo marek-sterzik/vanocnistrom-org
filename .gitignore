@@ -4,6 +4,7 @@
 /invoke
 /public/css/xterm.css
 /public/css/highlight.css
+/docker-compose-prod.yml
 
 #assets
 /public/assets-v*
