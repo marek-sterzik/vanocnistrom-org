@@ -7,7 +7,8 @@
     <div class="body">
         <header>
             <div class="url">
-                <a class="tree" href="{{ treeUrl }}">{{ treeUrlShow }}</a> (<a class="api" href="{{ path("tree", {"tree": tree}) }}">strom</a>)
+                <a class="tree" href="{{ treeUrl }}">{{ treeUrlShow }}</a>
+                (<a class="api" href="{{ path("tree", {"tree": tree}) }}">{% if selectedLanguage == "cz" %}strom{% else %}tree{% endif %}</a>)
             </div>
             <div class="clear"></div>
         </header>
