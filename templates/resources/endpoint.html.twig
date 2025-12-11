@@ -1,6 +1,6 @@
 {% if not params is defined %}{% set params = {} %}{% endif %}
 {% if not paramDescription is defined %}{% set paramDescription = {} %}{% endif %}
-{% set paramDescription = {"tree": (selectedLanguage == "en" ? "id of the christmass tree" : "id vánočního stromku")}|merge(paramDescription) %}
+{% set paramDescription = {"tree": (selectedLanguage == "en" ? "id of the christmas tree" : "id vánočního stromku")}|merge(paramDescription) %}
 <div class="block">
     <h3>{{ endpoint(method, route, params) }}</h3>
     <div>
