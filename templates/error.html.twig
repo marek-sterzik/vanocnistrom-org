@@ -3,18 +3,22 @@
     <div class="body">
         <main>
             <div class="center table-cell">
-                <h1>Nastala chyba</h1>
+                <h1>Nastala chyba / Error occured</h1>
                 <p>
                     {% if errorCode == 'cannot_create_tree' %}
                         Nelze vytvořit nový vánoční strom.
                     {% elseif errorCode == 'tree_not_found' %}
-                        Požadovaný vánoční strom neexistuje.
+                        <div><strong>404</strong> požadovaný vánoční strom neexistuje</div>
+                        <div><strong>404</strong> christmas tree does not exist</div>
+                    {% elseif errorCode == 'server_error' %}
+                        <div><strong>500</strong> na serveru došlo k chybě</div>
+                        <div><strong>500</strong> server error</div>
                     {% else %}
                         Nastala neznámá chyba: {{ errorCode }}
                     {% endif %}
                 </p>
                 <p>
-                    <a href="{{ path('main') }}">jít zpět na hlavní stránku</a>
+                    <a href="{{ path('main') }}">jít zpět na hlavní stránku / back to homepage</a>
                 </p>
             </div>
         </main>
