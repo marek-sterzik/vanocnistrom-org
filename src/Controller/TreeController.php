@@ -118,7 +118,7 @@ class TreeController extends AbstractController
         $cols = $this->parseInt($request, "cols");
         $rows = $this->parseInt($request, "rows");
         $tries = self::MAX_TRIES;
-        while ($revision !== null && $tree->getRevision() === $revision) {
+        while ($revision !== null && $tree !== null && $tree->getRevision() === $revision) {
             $tries--;
             if ($tries == 0) {
                 return [
@@ -127,7 +127,13 @@ class TreeController extends AbstractController
                 ];
             }
             sleep(1);
-            $this->treeManager->refresh($tree);
+            $tree = $this->treeManager->refresh($tree);
+        }
+        if ($tree === null) {
+            return [
+                "data" => null,
+                "revision" => null,
+            ];
         }
         $data = $this->treeManager->getTerminalCode($tree, $cols ?? 80, $rows ?? 25);
         $this->treeManager->store($tree, true, false);

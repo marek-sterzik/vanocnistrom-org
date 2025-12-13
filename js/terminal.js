@@ -121,6 +121,10 @@ function startWritingThread(term, runtimeData, config)
                 const delay = (data === null) ? 500 : 0
                 if (data !== null) {
                     term.write(data)
+                } else {
+                    if (response.revision === null) {
+                        window.location.reload()
+                    }
                 }
                 startWritingThreadDelayed(term, runtimeData, config, config.noDataTimeout)
             }

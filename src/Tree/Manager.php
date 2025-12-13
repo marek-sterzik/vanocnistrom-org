@@ -64,9 +64,10 @@ class Manager
         $this->entityManager->flush();
     }
 
-    public function refresh(TreeScene $tree): void
+    public function refresh(TreeScene $tree): ?TreeScene
     {
-        $this->entityManager->refresh($tree);
+        $this->entityManager->clear();
+        return $this->entityManager->getRepository(TreeScene::class)->find($tree->getId());
     }
 
     public function getTerminalCode(TreeScene $tree, int $cols, int $rows): string
