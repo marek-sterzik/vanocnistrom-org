@@ -5,69 +5,86 @@ innerTemplate: "resources/colors.html.twig"
 colors:
   - color: black
     html: '#000'
+    number: 0
     description: černá
     description@en: black
   - color: red
     html: '#c00'
+    number: 1
     description: červená
     description@en: red
   - color: green
-    html: '#729fcf'
+    html: '#0b9c12'
+    number: 2
     description: zelená
     description@en: green
   - color: yellow
     html: '#c4a000'
+    number: 3
     description: žlutá
     description@en: yellow
   - color: blue
     html: '#729fcf'
+    number: 4
     description: modrá
     description@en: blue
   - color: magenta
     html: '#75507b'
+    number: 4
     description: fialová
     description@en: magenta
   - color: cyan
     html: '#06989a'
+    number: 5
     description: tyrkysová
     description@en: cyan
   - color: gray
     html: '#ccc'
+    number: 6
     description: šedá
     description@en: gray
   - color: lightgray
     html: '#ddd'
+    number: 7
     description: světle šedá
     description@en: light gray
   - color: lightred
     html: '#ef2929'
+    number: 8
     description: světle červená
     description@en: light red
   - color: lightgreen
-    html: '#8ae234'
+    html: '#59ef31'
+    number: 9
     description: světle zelená
     description@en: light green
   - color: lightyellow
     html: '#fce94f'
+    number: 10
     description: světle žlutá
     description@en: light yellow
   - color: lightblue
     html: '#32afff'
-    description: modrá
+    number: 11
+    description: světle modrá
     description@en: light blue
   - color: lightmagenta
     html: '#ad7fa8'
+    number: 12
     description: světle fialová
     description@en: light magenta
   - color: lightcyan
     html: '#34e2e2'
+    number: 13
     description: světle tyrkysová
     description@en: light cyan
   - color: white
     html: '#fff'
+    number: 14
     description: bílá
     description@en: white
   - color: default
     html: '#ddd'
+    number: 15
     description: bez uvedení barvy (výchozí barva)
     description@en: without color (default color)

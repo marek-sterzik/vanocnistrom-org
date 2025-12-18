@@ -17,6 +17,7 @@
         <table>
             {% for color in colors %}
                 <tr>
+                    <td class="sp"><span class="color-number">{{ color.number }}</span></td>
                     <td class="sp"><span class="color-description">{{ color.color }}</span></td>
                     <td><span class="color" style="background-color: {{ color.html }}"></span></td>
                     <td>{{ color.description }}</td>
