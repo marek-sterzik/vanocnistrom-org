@@ -444,7 +444,7 @@ class ApiController extends AbstractController
         $labelColor = $this->getGiftColor($data['labelColor']);
         return [
             "id" => $fragment,
-            "packageColor" => $packageColor,
+            "color" => $packageColor,
             "labelColor" => $labelColor,
             "label" => $data['label'],
         ];
