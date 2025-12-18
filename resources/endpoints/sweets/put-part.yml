@@ -2,6 +2,7 @@ template: "resources/endpoint.html.twig"
 method: PUT
 route: api.sweets.fragment
 params: {"fragment": "part"}
+paramsData: {"part": 1}
 paramDescription:
   part: pořadové číslo sladkosti
   part@en: part nubmer of the sweet

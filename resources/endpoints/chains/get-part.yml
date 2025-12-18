@@ -2,6 +2,7 @@ template: "resources/endpoint.html.twig"
 method: GET
 route: api.chain.fragment
 params: {"fragment": "part"}
+paramsData: {"part": 2}
 paramDescription:
   part: pořadové číslo části řetězu
   part@en: part number of the chain part

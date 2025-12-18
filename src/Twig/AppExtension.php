@@ -31,6 +31,7 @@ class AppExtension extends AbstractExtension
             new TwigFunction('endpoint_base', [$this, 'getEndpointBase']),
             new TwigFunction('load_resource', [$this, 'loadResource']),
             new TwigFunction('tree_id', [$this, 'getTreeId']),
+            new TwigFunction('curl_command', [$this, 'getCurlCommand']),
         ];
     }
 
@@ -45,7 +46,14 @@ class AppExtension extends AbstractExtension
         if (!isset($params['tree'])) {
             $params['tree'] = $fillParams ? $this->getTreeId() : 'tree';
         }
-        return $this->endpointFormatter->formatEndpoint($method, $routeName, $params, $fillParams, $queryString, $fullUrl);
+        return $this->endpointFormatter->formatEndpoint(
+            $method,
+            $routeName,
+            $params,
+            $fillParams,
+            $queryString,
+            $fullUrl
+        );
     }
 
     public function getEndpointBase(): string
@@ -69,5 +77,22 @@ class AppExtension extends AbstractExtension
             return null;
         }
         return $routeParams['tree'];
+    }
+
+    public function getCurlCommand(
+        string $method,
+        string $route,
+        array $params,
+        array $paramsData,
+        ?array $request
+    ): string {
+        return $this->endpointFormatter->getCurlCommand(
+            $method,
+            $route,
+            $params,
+            $paramsData,
+            $request,
+            $this->getTreeId()
+        );
     }
 }

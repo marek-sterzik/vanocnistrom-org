@@ -81,4 +81,39 @@ class EndpointFormatter
         $url = rtrim($url, "/") . self::API_PREFIX . "/";
         return $url;
     }
+
+    public function getCurlCommand(
+        string $method,
+        string $route,
+        array $params,
+        array $paramsData,
+        ?array $request,
+        ?string $treeId
+    ): string {
+        $command = "curl";
+        if ($method !== "GET") {
+            $command .= sprintf("-X %s", $method);
+        }
+        if ($request !== null) {
+            $command .= sprintf("-d %s", escapeshellarg(json_encode($request)));
+        }
+
+        $routeParams = [];
+        foreach ($params as $routeParam => $param) {
+            if (isset($paramsData[$param])) {
+                $routeParams[$routeParam] = $paramsData[$param];
+            }
+        }
+        if ($treeId !== null) {
+            $routeParams['tree'] = $treeId;
+        }
+        
+        $uri = $this->router->generate(
+            $route,
+            $routeParams,
+            UrlGenerator::ABSOLUTE_URL
+        );
+
+        return $command . ' ' . $uri;
+    }
 }

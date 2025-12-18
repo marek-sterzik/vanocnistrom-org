@@ -2,6 +2,7 @@ template: "resources/endpoint.html.twig"
 method: GET
 route: api.gifts.fragment
 params: {"fragment": "part"}
+paramsData: {"part": 0}
 paramDescription:
   part: pořadové číslo daru
   part@en: part number of the gift

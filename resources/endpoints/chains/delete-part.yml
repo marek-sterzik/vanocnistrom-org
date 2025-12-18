@@ -2,6 +2,7 @@ template: "resources/endpoint.html.twig"
 method: DELETE
 route: api.chain.fragment
 params: {"fragment": "part"}
+paramsData: {"part": 1}
 paramDescription:
   part: pořadové číslo části řetězu
   part@en: part number of the chain part

@@ -2,6 +2,7 @@ template: "resources/endpoint.html.twig"
 method: GET
 route: api.glassBalls.fragment
 params: {"fragment": "part"}
+paramsData: {"part": 2}
 paramDescription:
   part: pořadové číslo skleněné koule
   part@en: glass ball part number

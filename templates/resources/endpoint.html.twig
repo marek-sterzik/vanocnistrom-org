@@ -49,6 +49,10 @@
                 <pre class="hl">{{ result|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
             </div>
         {% endif %}
+            <div class="box">
+                <h4>{% if selectedLanguage == "en" %}curl{% else %}curl{% endif %}</h3>
+                <pre class="hl">{{ curl_command(method, route, params, paramsData ?? [], request ?? null) }}</pre>
+            </div>
     </div>
 </div>
 
