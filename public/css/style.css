@@ -28,10 +28,12 @@ span.method.delete {background-color: #fdd;}
 span.method.post {background-color: #ffd;}
 span.uri {font-family: monospace; font-weight: bold;}
 span.param {font-family: monospace; color: #800;}
-div.box {background-color: #f3f3f3; max-width: 22em; box-shadow: 3px 3px 10px #ccc; margin: 1em auto;}
+div.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1em;}
+div.box {background-color: #f3f3f3; width: 100%; box-shadow: 3px 3px 10px #ccc; align-self: start;}
 div.box h4 {background-color: #bbb; padding: .3em 1em; margin: 0;}
 div.box pre {max-height: 20em; overflow: auto; margin: 0; padding: .5em; font-size: .9em;}
 div.box div.boxcontent {padding: .5em;}
+div.box.large { max-width: none; width: 100%; grid-column-start: span 2; }
 div.content h2, div.content h3, div.content h4, div.content h5, div.content h6 {color: black; font-family: monospace;}
 div.container {left: 0; top: 0; position: absolute; width: 100%; height: 100%; overflow: hidden;}
 div.container>div {width: 100%; height: 100%;}
@@ -50,6 +52,9 @@ div.api-base {font-family: monospace; font-weight: bold; font-size: 1.3em; text-
 @media (max-width: 500px) {
     header {font-size: .9em;}
     h3 {font-size: .9em;}
+    div.grid {grid-template-columns: 1fr;}
+    div.box.large { grid-column-start: span 1; }
+    div.box {max-width: none; width: 100%;}
 }
 @media (max-width: 350px) {
     header {font-size: .8em;}

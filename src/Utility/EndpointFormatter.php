@@ -82,22 +82,8 @@ class EndpointFormatter
         return $url;
     }
 
-    public function getCurlCommand(
-        string $method,
-        string $route,
-        array $params,
-        array $paramsData,
-        ?array $request,
-        ?string $treeId
-    ): string {
-        $command = "curl";
-        if ($method !== "GET") {
-            $command .= sprintf("-X %s", $method);
-        }
-        if ($request !== null) {
-            $command .= sprintf("-d %s", escapeshellarg(json_encode($request)));
-        }
-
+    private function getEndpointBaseUrl(string $route, array $params, array $paramsData, ?string $treeId): string
+    {
         $routeParams = [];
         foreach ($params as $routeParam => $param) {
             if (isset($paramsData[$param])) {
@@ -108,12 +94,43 @@ class EndpointFormatter
             $routeParams['tree'] = $treeId;
         }
         
-        $uri = $this->router->generate(
+        return $this->router->generate(
             $route,
             $routeParams,
             UrlGenerator::ABSOLUTE_URL
         );
+    }
+
+    public function getCurlCommand(
+        string $method,
+        string $route,
+        array $params,
+        array $paramsData,
+        ?array $request,
+        ?string $treeId
+    ): string {
+        $command = "curl";
+        if ($method !== "GET") {
+            $command .= sprintf(" -X %s", $method);
+        }
+        if ($request !== null) {
+            $command .= sprintf(" -d %s", escapeshellarg(json_encode($request)));
+        }
+
+        $uri = $this->getEndpointBaseUrl($route, $params, $paramsData, $treeId);
 
         return $command . ' ' . $uri;
+    }
+
+    public function getTestUrl(
+        string $method,
+        string $route,
+        array $params,
+        array $paramsData,
+        ?array $request,
+        ?string $treeId
+    ): string {
+        $uri = $this->getEndpointBaseUrl($route, $params, $paramsData, $treeId);
+        return $uri;
     }
 }

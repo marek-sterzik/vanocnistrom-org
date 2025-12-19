@@ -32,6 +32,7 @@ class AppExtension extends AbstractExtension
             new TwigFunction('load_resource', [$this, 'loadResource']),
             new TwigFunction('tree_id', [$this, 'getTreeId']),
             new TwigFunction('curl_command', [$this, 'getCurlCommand']),
+            new TwigFunction('test_url', [$this, 'getTestUrl']),
         ];
     }
 
@@ -94,5 +95,31 @@ class AppExtension extends AbstractExtension
             $request,
             $this->getTreeId()
         );
+    }
+
+    public function getTestUrl(
+        string $method,
+        string $route,
+        array $params,
+        array $paramsData,
+        ?array $request
+    ): string {
+        $url = $this->endpointFormatter->getTestUrl(
+            $method,
+            $route,
+            $params,
+            $paramsData,
+            $request,
+            $this->getTreeId()
+        );
+        $request = [
+            ... (($method === 'GET') ? [] : ['method' => $method]),
+            ... ($request ?? [])
+        ];
+        if (!empty($request)) {
+            $url = $url . "?" . http_build_query($request);
+        }
+        return $url;
+
     }
 }

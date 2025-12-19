@@ -7,52 +7,58 @@
         <p>
             {{ description|raw }}
         </p>
-        {% if paramDescription is defined and not paramDescription is empty %}
-            <div class="box">
-                <h4>{% if selectedLanguage == "en" %}Parameters{% else %}Parametry{% endif %}</h3>
-                <div class="boxcontent">
-                    <table>
-                        {% for name, description in paramDescription %}
-                            <tr>
-                                <td><span class="uri"><span class="param">{{ "{" ~ name ~ "}" }}</span></span></td>
-                                <td>- {{ description }}</td>
-                            </tr>
-                        {% endfor %}
-                    </table>
+        <div class="grid">
+            {% if paramDescription is defined and not paramDescription is empty %}
+                <div class="box">
+                    <h4>{% if selectedLanguage == "en" %}Parameters{% else %}Parametry{% endif %}</h3>
+                    <div class="boxcontent">
+                        <table>
+                            {% for name, description in paramDescription %}
+                                <tr>
+                                    <td><span class="uri"><span class="param">{{ "{" ~ name ~ "}" }}</span></span></td>
+                                    <td>- {{ description }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
                 </div>
-            </div>
-        {% endif %}
-        {% if requestDescription is defined and not requestDescription is empty %}
-            <div class="box">
-                <h4>{% if selectedLanguage == "en" %}Request variables{% else %}Proměnné požadavku{% endif %}</h3>
-                <div class="boxcontent">
-                    <table>
-                        {% for name, description in requestDescription %}
-                            <tr>
-                                <td><span class="uri"><span class="param">{{ name }}</span></span></td>
-                                <td>- {{ description }}</td>
-                            </tr>
-                        {% endfor %}
-                    </table>
+            {% endif %}
+            {% if requestDescription is defined and not requestDescription is empty %}
+                <div class="box">
+                    <h4>{% if selectedLanguage == "en" %}Request variables{% else %}Proměnné požadavku{% endif %}</h3>
+                    <div class="boxcontent">
+                        <table>
+                            {% for name, description in requestDescription %}
+                                <tr>
+                                    <td><span class="uri"><span class="param">{{ name }}</span></span></td>
+                                    <td>- {{ description }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
                 </div>
-            </div>
-        {% endif %}
-        {% if request is defined %}
-            <div class="box">
-                <h4>{% if selectedLanguage == "en" %}Request body{% else %}Tělo požadavku{% endif %}</h3>
-                <pre class="hl">{{ request|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
-            </div>
-        {% endif %}
-        {% if result is defined %}
-            <div class="box">
-                <h4>{% if selectedLanguage == "en" %}Response body{% else %}Tělo odpovědi{% endif %}</h3>
-                <pre class="hl">{{ result|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
-            </div>
-        {% endif %}
-            <div class="box">
+            {% endif %}
+            {% if request is defined %}
+                <div class="box">
+                    <h4>{% if selectedLanguage == "en" %}Request body{% else %}Tělo požadavku{% endif %}</h3>
+                    <pre class="hl">{{ request|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+                </div>
+            {% endif %}
+            {% if result is defined %}
+                <div class="box">
+                    <h4>{% if selectedLanguage == "en" %}Response body{% else %}Tělo odpovědi{% endif %}</h3>
+                    <pre class="hl">{{ result|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
+                </div>
+            {% endif %}
+            <div class="box large">
                 <h4>{% if selectedLanguage == "en" %}curl{% else %}curl{% endif %}</h3>
                 <pre class="hl">{{ curl_command(method, route, params, paramsData ?? [], request ?? null) }}</pre>
             </div>
+            <div class="box large">
+                <h4>{% if selectedLanguage == "en" %}test url{% else %}testovací url{% endif %}</h3>
+                <pre class="hl">{{ test_url(method, route, params, paramsData ?? [], request ?? null) }}</pre>
+            </div>
+        </div>
     </div>
 </div>
 
