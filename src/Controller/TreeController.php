@@ -64,10 +64,10 @@ class TreeController extends AbstractController
         }
 
         $languages = array_map(
-            fn ($l) => [
-                "code" => $l,
-                "selected" => ($l === $lang),
-                "url" => $this->generateUrl('tree.api', ["tree" => $tree->getId(), "lang" => $l])
+            fn ($lng) => [
+                "code" => $lng,
+                "selected" => ($lng === $lang),
+                "url" => $this->generateUrl('tree.api', ["tree" => $tree->getId(), "lang" => $lng])
             ],
             array_keys(self::DOC_LANGUAGES)
         );
@@ -91,8 +91,8 @@ class TreeController extends AbstractController
     {
         $acceptedLanguages = $request->headers->get("Accept-Language");
         $acceptedLanguages = is_string($acceptedLanguages) ? explode(",", $acceptedLanguages) : [];
-        $acceptedLanguages = array_map(fn ($l) => trim(preg_replace('/;.*$/', '', $l)), $acceptedLanguages);
-        $acceptedLanguages = array_map(fn ($l) => preg_replace('/[_\\-].*$/', '', $l), $acceptedLanguages);
+        $acceptedLanguages = array_map(fn ($lng) => trim(preg_replace('/;.*$/', '', $lng)), $acceptedLanguages);
+        $acceptedLanguages = array_map(fn ($lng) => preg_replace('/[_\\-].*$/', '', $lng), $acceptedLanguages);
         foreach ($acceptedLanguages as $acceptedLanguage) {
             foreach (self::DOC_LANGUAGES as $lang => $detect) {
                 foreach ($detect as $detectLang) {

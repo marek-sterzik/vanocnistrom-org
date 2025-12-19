@@ -120,6 +120,5 @@ class AppExtension extends AbstractExtension
             $url = $url . "?" . http_build_query($request);
         }
         return $url;
-
     }
 }
