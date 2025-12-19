@@ -1,0 +1,4 @@
+template: "resources/special.html.twig"
+innerTemplate: "resources/source-code.html.twig"
+heading: 'Zdrojový kód'
+heading@en: 'Source code'

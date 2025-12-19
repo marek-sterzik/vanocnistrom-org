@@ -12,7 +12,7 @@
     </ol>
 {% endif %}
 <div class="box">
-        <h4>Barvy</h3>
+        <h4>{% if selectedLanguage == 'en' %}Colors{% else %}Barvy{% endif %}</h3>
     <div class="boxcontent">
         <table>
             {% for color in colors %}

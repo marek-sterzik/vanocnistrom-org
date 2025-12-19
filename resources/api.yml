@@ -6,6 +6,7 @@ sections:
     subsections:
       - access
       - colors
+      - source-code
   - heading: "Hvězda"
     heading@en: "Star"
     subsections:

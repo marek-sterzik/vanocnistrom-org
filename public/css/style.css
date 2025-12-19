@@ -4,7 +4,9 @@ div.table-cell {display: table-cell;}
 header, main {display: table-row;}
 main {position: relative; height: 100%; background-color: black; color: #bbb;}
 div.content {background-color: white; max-width: 70em; margin: 0 auto 2em auto; color: black; padding: .5em 1em; border-radius: .7em; font-family: sans-serif; box-shadow: 10px 10px 10px #444;}
-div.content a {color: black;}
+div.content a {color: black; font-weight: bold;}
+div.content a:hover {text-decoration: underline;}
+div.content a.lang {font-weight: normal;}
 div.content p {text-align: justify;}
 div.language-switch {text-align: right; font-size: 1.5em;}
 div.language-switch .selected {font-weight: bold;}
@@ -42,6 +44,7 @@ div.clear {clear: both;}
 a {color: white; text-decoration: none;}
 a.tree {font-weight: bold;}
 a:hover {text-decoration: underline;}
+
 header div.url {float: right; padding: 1em; font-size: 1.5em;}
 .xterm .xterm-viewport {overflow-y: hidden;}
 span.color {display: inline-block; width: 1em; height: 1em; border: 1px solid #eee; box-shadow: 1px 1px 3px #ddd;}
