@@ -250,23 +250,25 @@ class ChristmasTree
         return $this;
     }
 
-    public function putGifts(string $label, ?int $packageColor = null, ?int $labelColor = null): self
+    public function putGifts(string $label, ?int $packageColor = null, ?int $labelColor = null, ?int $ribbonColor = null): self
     {
         $this->putGiftLogical([
             'label' => $label,
             'packageColor' => $packageColor,
             'labelColor' => $labelColor,
+            'ribbonColor' => $ribbonColor,
         ]);
         $this->drawGifts();
         return $this;
     }
 
-    public function putGiftsPart(int $gift, string $label, ?int $packageColor = null, ?int $labelColor = null): self
+    public function putGiftsPart(int $gift, string $label, ?int $packageColor = null, ?int $labelColor = null, ?int $ribbonColor = null): self
     {
         $this->putGiftLogical([
             'label' => $label,
             'packageColor' => $packageColor,
             'labelColor' => $labelColor,
+            'ribbonColor' => $ribbonColor
         ], $gift);
         $this->drawGifts();
         return $this;
@@ -280,6 +282,9 @@ class ChristmasTree
         if (!array_key_exists('packageColor', $giftDescriptor) || !array_key_exists('labelColor', $giftDescriptor)) {
             return $this;
         }
+        if (!array_key_exists('ribbonColor', $giftDescriptor)) {
+            $giftDescriptor['ribbonColor'] = $giftDescriptor['packageColor'];
+        }
         if (!is_string($giftDescriptor['label'])) {
             return $this;
         }
@@ -289,10 +294,14 @@ class ChristmasTree
         if (!is_null($giftDescriptor['labelColor']) && !is_int($giftDescriptor['labelColor'])) {
             return $this;
         }
+        if (!is_null($giftDescriptor['ribbonColor']) && !is_int($giftDescriptor['ribbonColor'])) {
+            return $this;
+        }
         $record  = [
             'label' => $giftDescriptor['label'],
             'packageColor' => $giftDescriptor['packageColor'],
             'labelColor' => $giftDescriptor['labelColor'],
+            'ribbonColor' => $giftDescriptor['ribbonColor'],
         ];
         if ($part === count($this->gifts)) {
             $part = null;
@@ -418,6 +427,8 @@ class ChristmasTree
             foreach ($this->gifts as $i => $giftDescriptor) {
                 $this->canvas->setColor($this->getSafeColor($giftDescriptor['packageColor']));
                 $this->drawer->drawGift($i);
+                $this->canvas->setColor($this->getSafeColor($giftDescriptor['ribbonColor']));
+                $this->drawer->drawGiftRibbon($i);
                 $this->canvas->setColor($this->getSafeColor($giftDescriptor['labelColor']));
                 $this->drawer->drawGiftLabel($giftDescriptor['label'], $i);
             }

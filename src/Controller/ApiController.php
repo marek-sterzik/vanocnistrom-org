@@ -194,7 +194,7 @@ class ApiController extends AbstractController
                 $body = [];
             }
         }
-        $get = ["label" => "label", "color" => "color", "labelColor" => "label-color"];
+        $get = ["label" => "label", "color" => "color", "labelColor" => "label-color", 'ribbonColor' => 'ribbon-color'];
         $data = [];
         foreach ($get as $key => $getKey) {
             if (array_key_exists($key, $body)) {
@@ -232,6 +232,14 @@ class ApiController extends AbstractController
             $labelColorValid = true;
         }
 
+        $ribbonColor = $this->parseColor($requestData["ribbonColor"]);
+        if ($ribbonColor === false) {
+            $ribbonColor = null;
+            $ribbonColorValid = false;
+        } else {
+            $ribbonColorValid = true;
+        }
+
         $label = $requestData["label"];
         if ($label !== null && !is_string($label)) {
             $labelValid = false;
@@ -245,6 +253,8 @@ class ApiController extends AbstractController
             "color" => $color,
             "labelColor" => $labelColor,
             "labelColorValid" => $labelColorValid,
+            'ribbonColor' => $ribbonColor,
+            'ribbonColorValid' => $ribbonColorValid,
             "label" => $label,
             "labelValid" => $labelValid,
         ];
@@ -442,10 +452,12 @@ class ApiController extends AbstractController
     {
         $packageColor = $this->getGiftColor($data['packageColor']);
         $labelColor = $this->getGiftColor($data['labelColor']);
+        $ribbonColor = $this->getGiftColor($data['ribbonColor']);
         return [
             "id" => $fragment,
             "color" => $packageColor,
             "labelColor" => $labelColor,
+            "ribbonColor" => $ribbonColor,
             "label" => $data['label'],
         ];
     }
@@ -455,7 +467,7 @@ class ApiController extends AbstractController
      */
     private function invokePutGifts(array $params, string $method, TreeScene $tree): Response
     {
-        if (!$params['labelColorValid'] || !$params['labelValid']) {
+        if (!$params['labelColorValid'] || !$params['ribbonColorValid'] || !$params['labelValid']) {
             return $this->getErrorResponse(400, "Bad request");
         }
         $fragment = $params['fragment'];
@@ -464,18 +476,19 @@ class ApiController extends AbstractController
             'label' => $params['label'] ?? '',
             'packageColor' => $params['color'],
             'labelColor' => $params['labelColor'] ?? $params['color'],
+            'ribbonColor' => $params['ribbonColor'] ?? $params['color'],
         ];
         $success = false;
         $this->treeManager->invokeStateChange(
             $tree,
             function (ChristmasTree $christmasTree) use (&$success, $gift, $method, $getter, $fragment) {
                 if ($fragment === null) {
-                    $christmasTree->$method($gift['label'], $gift['packageColor'], $gift['labelColor']);
+                    $christmasTree->$method($gift['label'], $gift['packageColor'], $gift['labelColor'], $gift['ribbonColor']);
                     $success = true;
                 } else {
                     $state = $christmasTree->$getter();
                     if (isset($state[$fragment]) || $fragment === count($state)) {
-                        $christmasTree->$method($fragment, $gift['label'], $gift['packageColor'], $gift['labelColor']);
+                        $christmasTree->$method($fragment, $gift['label'], $gift['packageColor'], $gift['labelColor'], $gift['ribbonColor']);
                         $success = true;
                     }
                 }

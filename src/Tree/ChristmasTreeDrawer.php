@@ -187,12 +187,26 @@ class ChristmasTreeDrawer
         list($baseX, $baseY) = $this->getGiftBase($giftNumber);
 
         if ($baseX !== null && $baseY !== null) {
+            $this->canvas->writeText($baseX, $baseY+2, ".".str_repeat("-", 15).".");
+            $this->canvas->writeText($baseX, $baseY+3, "|".str_repeat(" ", 15)."|");
+            $this->canvas->writeText($baseX, $baseY+4, "|".str_repeat(" ", 15)."|");
+            $this->canvas->writeText($baseX, $baseY+5, "'".str_repeat("-", 15)."'");
+        }
+
+        return $this;
+    }
+
+    public function drawGiftRibbon(int $giftNumber): self
+    {
+        list($baseX, $baseY) = $this->getGiftBase($giftNumber);
+
+        if ($baseX !== null && $baseY !== null) {
             $this->canvas->writeText($baseX+6, $baseY, "_   _");
             $this->canvas->writeText($baseX+5, $baseY+1, "((\\o/))");
-            $this->canvas->writeText($baseX, $baseY+2, ".".str_repeat("-", 5)."//^\\\\".str_repeat("-", 5).".");
-            $this->canvas->writeText($baseX, $baseY+3, "|".str_repeat(" ", 4)."/ | | \\".str_repeat(" ", 4)."|");
-            $this->canvas->writeText($baseX, $baseY+4, "|".str_repeat(" ", 6)."| |".str_repeat(" ", 6)."|");
-            $this->canvas->writeText($baseX, $baseY+5, "'".str_repeat("-", 6)."===".str_repeat("-", 6)."'");
+            $this->canvas->writeText($baseX+6, $baseY+2, "//^\\\\");
+            $this->canvas->writeText($baseX+5, $baseY+3, "/ | | \\");
+            $this->canvas->writeText($baseX+7, $baseY+4, "| |");
+            $this->canvas->writeText($baseX+7, $baseY+5, "===");
         }
 
         return $this;
