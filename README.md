@@ -1,35 +1,31 @@
 # www.vanocnistrom.org
 
-Toto je kód webové aplikace, která běží na webu [www.vanocnistrom.org](https://www.vanocnistrom.org). Aplikace umožňuje zdobit virtuální vánoční stromek skrze dobře definované API.
-Aplikaci lze používat ke vzdělávání i k zábavě.
+This is the code for the web application of [www.vanocnistrom.org](https://www.vanocnistrom.org). Application allows to decorate a virtual christmas tree using a well-defined API.
+Application may be used for educational purposes or just for fun.
 
-## Vývojové prostředí
+## Development environment
 
-Vývojové prostředí je postaveno na platformě [spsostrov-php-runtime](https://github.com/marek-sterzik/spsostrov-php-runtime), kde jsou popsány podrobnosti použití. Platforma předpokládá
-fungující instalaci dockeru a prostředí založené na Linuxu. Vývoj lze proto realizovat buď přímo v rámci nějaké linuxové distribuce, nebo také například na Windows v rámci subsystému
-WSL (Windows subsystem for Linux).
+The development environment is based on [spsostrov-php-runtime](https://github.com/marek-sterzik/spsostrov-php-runtime), where also details of the usage are documented. The
+platform expects a working docker and Linux-based environment. Platform is easily usable inside of a linux distribution or even on Windows using the WSL subsystem (Windows
+subsystem for Linux).
 
-Podrobnosti o použití vývojového prostředí najdete na [stránkách platformy spsostrov-php-runtime](https://github.com/marek-sterzik/spsostrov-php-runtime).
+## Quick start
 
-## Rychlý start
-
-Pro rychlý start systému spusťte příkaz:
+After installing docker and making the docker available for an ordinary user, just run the command:
 
 ```
 bin/docker start
 ```
 
-**Aplikaci přitom spouštíme jako obyčejný uživatel, nikdy jako root!**
+**All commands should be invoked using a regular user and never should be invoked as root!**
 
-Aplikace se potom rozběhne na portu, který jste zadali v konfigurační části. Pokud jste ponechali základní port 80, budete mít aplikaci
-k dispozici na adrese:
+The application will be running using the port you have configured in the configuration section.
 
-```
-http://localhost
-```
-
-Pokud jste zadali jiné číslo portu, např. `8080`, bude aplikace dostupná na adrese:
-
+For example:
 ```
 http://localhost:8080
 ```
+
+## Licence
+
+The applicaiton may be distributed under the MIT licence.
