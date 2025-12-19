@@ -2,11 +2,11 @@ template: "resources/endpoint.html.twig"
 method: GET
 route: api.gifts.collection
 result:
-  - {"id":0,"color":"red","labelColor":"red","label":"George"}
-  - {"id":1,"color":"blue","labelColor":"blue","label":"Maggie"}
-  - {"id":2,"color":"brown","labelColor":"green","label":"Kristina"}
-  - {"id":3,"color":"green","labelColor":"white","label":"Carl V."}
-  - {"id":4,"color":"white","labelColor":"red","label":"Anett"}
+  - {"id":0,"color":"red","labelColor":"red","ribbonColor":"lightred","label":"George"}
+  - {"id":1,"color":"blue","labelColor":"blue","ribbonColor":"lightblue","label":"Maggie"}
+  - {"id":2,"color":"brown","labelColor":"green","ribbonColor":"lightgreen","label":"Kristina"}
+  - {"id":3,"color":"green","labelColor":"white","ribbonColor":"white","label":"Carl V."}
+  - {"id":4,"color":"white","labelColor":"red","ribbonColor":"lightred","label":"Anett"}
 description: |
     Vrať informace o darech pod stromkem. (Pozor, id darů se průběžně mění!)
 description@en: |

@@ -6,7 +6,7 @@ paramsData: {"part": 0}
 paramDescription:
   part: pořadové číslo daru
   part@en: part number of the gift
-result: {"id":0,"color":"red","labelColor":"red","label":"George"}
+result: {"id":0,"color":"red","labelColor":"red","ribbonColor":"lightred","label":"George"}
 description: |
   Vrať informace o jednom daru. (Pozor, id darů se průběžně mění!)
 description@en: |

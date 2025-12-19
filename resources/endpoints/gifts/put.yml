@@ -2,13 +2,15 @@ template: "resources/endpoint.html.twig"
 method: PUT
 route: api.gifts.collection
 result: {"success":true}
-request: {"color":"green", "labelColor": "blue", "label": "Jan"}
+request: {"color":"green", "labelColor": "blue", "ribbonColor": "lightgreen", "label": "Jan"}
 requestDescription:
   color: barva dárku
   labelColor: barva popisku na dárku
+  ribbonColor: barva stuhy na dárku
   label: popisek na dárku
   color@en: color of the gift
   labelColor@en: color of the label on the gift
+  ribbonColor@en: color of the ribbon on the gift
   label@en: label on the gift
 description: |
   Polož dar pod stromek. (Pozor, id darů se průběžně mění!)
