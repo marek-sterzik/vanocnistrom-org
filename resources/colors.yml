@@ -30,61 +30,61 @@ colors:
     description@en: blue
   - color: magenta
     html: '#75507b'
-    number: 4
+    number: 5
     description: fialová
     description@en: magenta
   - color: cyan
     html: '#06989a'
-    number: 5
+    number: 6
     description: tyrkysová
     description@en: cyan
   - color: gray
     html: '#ccc'
-    number: 6
+    number: 7
     description: šedá
     description@en: gray
   - color: lightgray
     html: '#ddd'
-    number: 7
+    number: 8
     description: světle šedá
     description@en: light gray
   - color: lightred
     html: '#ef2929'
-    number: 8
+    number: 9
     description: světle červená
     description@en: light red
   - color: lightgreen
     html: '#59ef31'
-    number: 9
+    number: 10
     description: světle zelená
     description@en: light green
   - color: lightyellow
     html: '#fce94f'
-    number: 10
+    number: 11
     description: světle žlutá
     description@en: light yellow
   - color: lightblue
     html: '#32afff'
-    number: 11
+    number: 12
     description: světle modrá
     description@en: light blue
   - color: lightmagenta
     html: '#ad7fa8'
-    number: 12
+    number: 13
     description: světle fialová
     description@en: light magenta
   - color: lightcyan
     html: '#34e2e2'
-    number: 13
+    number: 14
     description: světle tyrkysová
     description@en: light cyan
   - color: white
     html: '#fff'
-    number: 14
+    number: 15
     description: bílá
     description@en: white
   - color: default
     html: '#ddd'
-    number: 15
+    number: null
     description: bez uvedení barvy (výchozí barva)
     description@en: without color (default color)
