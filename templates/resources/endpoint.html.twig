@@ -52,10 +52,12 @@
             {% endif %}
             <div class="box large">
                 <h4>{% if selectedLanguage == "en" %}curl{% else %}curl{% endif %}</h3>
+                <button class="copy-to-clipboard" title="copy to clipboard"><span><span>Copy to clipboard</span></span></button>
                 <pre class="hl">{{ curl_command(method, route, params, paramsData ?? [], request ?? null) }}</pre>
             </div>
             <div class="box large">
                 <h4>{% if selectedLanguage == "en" %}test url{% else %}testovací url{% endif %}</h3>
+                <button class="copy-to-clipboard" title="copy to clipboard"><span><span>Copy to clipboard</span></span></button>
                 <pre class="hl">{{ test_url(method, route, params, paramsData ?? [], request ?? null) }}</pre>
             </div>
         </div>

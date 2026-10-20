@@ -63,3 +63,13 @@ div.api-base {font-family: monospace; font-weight: bold; font-size: 1.3em; text-
     header {font-size: .8em;}
     h3 {font-size: .8em;}
 }
+
+button.copy-to-clipboard {padding: .2em; float: right; background-color: transparent; border: none; border-radius: .2em;}
+button.copy-to-clipboard:hover {background-color: #fff; box-shadow: 0px 0px 5px #ccc;}
+button.copy-to-clipboard:active {background-color: #fff; box-shadow: none;}
+button.copy-to-clipboard > span {
+    display: block; width: 1.3em; height: 1.3em; margin: 0; padding: 0; content: ""; background-image: url("../clipboard.svg"); background-size: contain;
+    background-repeat: no-repeat; background-position: center;
+}
+button.copy-to-clipboard.copied > span { background-image: url('../clipboard-check.svg');}
+button.copy-to-clipboard > span > span {display: none; }
