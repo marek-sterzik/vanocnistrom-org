@@ -30,7 +30,7 @@
             {{ endpoint("PUT", "api.gifts.collection", {}, true) }}
         </div>
         with the body:
-        <div class="box">
+        <div class="box standalone">
             <pre class="hl">{{ {"color": "green", "label": "Jan"}|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
         </div>
 
@@ -75,7 +75,7 @@
             {{ endpoint("PUT", "api.gifts.collection", {}, true) }}
         </div>
         s tělem
-        <div class="box">
+        <div class="box standalone">
             <pre class="hl">{{ {"color": "green", "label": "Jan"}|json_encode(constant('JSON_PRETTY_PRINT'))  }}</pre>
         </div>
 

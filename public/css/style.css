@@ -32,6 +32,7 @@ span.uri {font-family: monospace; font-weight: bold;}
 span.param {font-family: monospace; color: #800;}
 div.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1em;}
 div.box {background-color: #f3f3f3; width: 100%; box-shadow: 3px 3px 10px #ccc; align-self: start;}
+div.box.standalone {margin: 1em 0;}
 div.box h4 {background-color: #bbb; padding: .3em 1em; margin: 0;}
 div.box pre {max-height: 20em; overflow: auto; margin: 0; padding: .5em; font-size: .9em;}
 div.box div.boxcontent {padding: .5em;}
