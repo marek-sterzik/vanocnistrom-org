@@ -3,13 +3,20 @@ div.body {display: table; width: 100%; height: 100%;}
 div.table-cell {display: table-cell;}
 header, main {display: table-row;}
 main {position: relative; height: 100%; background-color: black; color: #bbb;}
+main.entrance {background-image: url("../tree.png"); background-position: center; background-size: contain; background-repeat: no-repeat; font-size: 1.5em;}
 div.content {background-color: white; max-width: 70em; margin: 0 auto 2em auto; color: black; padding: .5em 1em; border-radius: .7em; font-family: sans-serif; box-shadow: 10px 10px 10px #444;}
+input.entrance-code {font-family: inherit; font-size: inherit; width: 20em; padding: .2em .5em; text-align: center; border-radius: .5em;}
+input.entrance-submit {font-family: inherit; font-size: inherit; background: none; color: inherit; border: none; margin-top: .5em; text-decoration: none;}
+input.entrance-submit:hover {text-decoration: underline; color: white;}
+div.ent {margin: .5em 0;}
+div.ent.sm {font-size: .7em;}
 div.content a {color: black; font-weight: bold;}
 div.content a:hover {text-decoration: underline;}
 div.content a.lang {font-weight: normal;}
 div.content p {text-align: justify;}
 div.language-switch {text-align: right; font-size: 1.5em;}
 div.language-switch .selected {font-weight: bold;}
+div.language-switch-entrance .lang.selected {font-weight: bold; color: white;}
 div.center {text-align: center; vertical-align: middle;}
 main h1, main h2 {text-align: center;}
 main h1 {color: white;}

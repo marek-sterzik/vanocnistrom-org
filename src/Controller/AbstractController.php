@@ -12,8 +12,57 @@ use App\Entity\TreeScene;
 
 class AbstractController extends AbstractControllerBase
 {
+    const DOC_LANGUAGES = [
+        "en" => ["en"],
+        "cz" => ["cs"],
+    ];
+
     public function __construct(protected TreeManager $treeManager, protected RequestStack $requestStack)
     {
+    }
+
+    private function detectLanguage(Request $request): string
+    {
+        $acceptedLanguages = $request->headers->get("Accept-Language");
+        $acceptedLanguages = is_string($acceptedLanguages) ? explode(",", $acceptedLanguages) : [];
+        $acceptedLanguages = array_map(fn ($lng) => trim(preg_replace('/;.*$/', '', $lng)), $acceptedLanguages);
+        $acceptedLanguages = array_map(fn ($lng) => preg_replace('/[_\\-].*$/', '', $lng), $acceptedLanguages);
+        foreach ($acceptedLanguages as $acceptedLanguage) {
+            foreach (self::DOC_LANGUAGES as $lang => $detect) {
+                foreach ($detect as $detectLang) {
+                    if ($detectLang === $acceptedLanguage) {
+                        return $lang;
+                    }
+                }
+            }
+        }
+        return array_key_first(self::DOC_LANGUAGES);
+    }
+
+    protected function getLanguageInfo(): array
+    {
+        $request = $this->requestStack->getCurrentRequest();
+        $lang = $request->query->get("lang");
+        $strict = true;
+
+        if (!is_string($lang) || !isset(self::DOC_LANGUAGES[$lang])) {
+            $lang = $this->detectLanguage($request);
+            $strict = false;
+        }
+
+        $languages = array_map(
+            fn ($lng) => [
+                "code" => $lng,
+                "selected" => ($lng === $lang),
+                "url" => "?lang=" . urlencode($lng),
+            ],
+            array_keys(self::DOC_LANGUAGES)
+        );
+        return [
+            "selectedLanguage" => $lang,
+            "selectedLanguageStrict" => $strict,
+            "languages" => $languages,
+        ];
     }
 
     protected function findProperTree(): ?TreeScene
@@ -65,7 +114,7 @@ class AbstractController extends AbstractControllerBase
         return null;
     }
 
-    private function treeNotFound(): Response
+    protected function treeNotFound(): Response
     {
         $response = $this->redirectToProperTree();
         if ($response !== null) {

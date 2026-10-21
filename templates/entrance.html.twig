@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="body">
+        <main class="entrance">
+            <div class="center table-cell">
+                <h1>{% if selectedLanguage == "en" %}Welcome{% else %}Vítejte{% endif %}</h1>
+                <div class="language-switch-entrance">
+                    {% for lang in languages %}
+                        {% if not loop.first %}/{% endif %}
+                        {% if lang.selected %}
+                            <span class="lang selected">{{ lang.code }}</span>
+                        {% else %}
+                            <a class="lang" href="{{ lang.url }}">{{ lang.code }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="ent">
+                    {% if selectedLanguage == "en" %}
+                        What do you want to do?
+                    {% else %}
+                        Co chcete dělat? 
+                    {% endif %}
+                </div>
+                <div class="ent">
+                    <a href="{{ path('create') }}">{% if selectedLanguage == "en" %}create a new christmas tree{% else %}vytvořit nový vánoční strom{% endif %}</a>
+                </div>
+                <div class="ent sm">
+                    {% if selectedLanguage == "en" %}or{% else %}nebo{% endif %}
+                </div>
+                <div class="ent">
+                    <form>
+                        <input type="hidden" name="lang" value="{{ selectedLanguage }}">
+                        <div>
+                            <input class="entrance-code" type="text" name="tree"
+                                placeholder="{% if selectedLanguage == "en" %}enter the christmas tree code{% else %}zadat kód vánočního stromu{% endif %}">
+                        </div>
+                        <div>
+                            <input class="entrance-submit" type="submit" value="{% if selectedLanguage == "en" %}submit{% else %}odeslat{% endif %}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
